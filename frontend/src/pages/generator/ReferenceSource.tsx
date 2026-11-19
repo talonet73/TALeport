@@ -169,7 +169,7 @@ export function ReferenceSource({ onBatch }: { onBatch: (batchId: string | null)
 
       {flow.phase === 'handoff' && flow.handoff && (
         <Modal title={t('generator.handoffTitle')} onClose={flow.reset} wide>
-          <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+          <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
         </Modal>
       )}
     </div>

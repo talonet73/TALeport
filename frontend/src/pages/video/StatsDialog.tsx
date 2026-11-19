@@ -97,7 +97,7 @@ export function StatsDialog({ video, onClose }: { video: Video; onClose: () => v
                 <Info className="mt-0.5 size-4 shrink-0 text-accent-text" aria-hidden />
                 {t('video.stats.attachInChat', { count: handoff.images })}
               </p>
-              <HandoffPanel handoff={handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+              <HandoffPanel handoff={handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
             </>
           ) : (
             <>

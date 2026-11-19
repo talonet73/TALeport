@@ -31,7 +31,7 @@ export function RegenerateDialog({ draftId, onClose }: { draftId: number; onClos
   return (
     <Modal title={t('drafts.regenerate')} onClose={onClose} wide={flow.phase === 'handoff'}>
       {flow.phase === 'handoff' && flow.handoff ? (
-        <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+        <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
       ) : (
         <div className="space-y-4">
           <p className="text-muted">{t('drafts.regenerateHint')}</p>

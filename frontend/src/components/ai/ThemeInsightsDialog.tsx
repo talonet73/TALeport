@@ -44,7 +44,7 @@ export function ThemeInsightsDialog({ topicId, topicName, onClose }: { topicId: 
           </button>
         </div>
       ) : flow.phase === 'handoff' && flow.handoff ? (
-        <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+        <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
       ) : (
         <div className="space-y-4">
           <p className="max-w-prose text-muted">{t('ai.insights.description')}</p>

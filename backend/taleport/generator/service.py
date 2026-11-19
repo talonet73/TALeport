@@ -38,6 +38,7 @@ MAX_POSTS_PER_REQUEST = 12
 MAX_SERIES = 10
 MAX_SOURCES = 12
 GENERATION_MAX_TOKENS = 16_000
+REVISION_MAX_CHARS = 1500  # the author's request in "Edit with AI"
 RESULT_COLUMNS = ("likes", "comments", "shares", "views")
 _NOW = "strftime('%Y-%m-%dT%H:%M:%fZ', 'now')"
 
@@ -575,7 +576,57 @@ class GeneratorService:
             row = self._row(conn, draft_id)
         return {"mode": "chat", "draft": self._replace(row, parse_answer(text, GeneratedPosts))}
 
-    def _replace(self, row: sqlite3.Row, posts: GeneratedPosts) -> dict[str, Any]:
+    # -- "Edit with AI": rewrite one draft following the author's request ----------------
+
+    def _revision_prompt(self, row: sqlite3.Row, request: str) -> prompts.Prompt:
+        request = request.strip()
+        if not request:
+            raise AppError("generator.revision_empty")
+        ctx = json.loads(row["context"])
+        topic = None
+        if row["topic_id"]:
+            try:
+                topic = self._topics.get(row["topic_id"])
+            except AppError:
+                topic = None
+        tone, _ = self._tone_and_style(ctx, topic)
+        if ctx.get("reference") and isinstance(ctx.get("voice"), dict):
+            tone = ctx["voice"].get("guide") or tone
+        post = json.loads(row["content"] or "{}")
+        if row["edited"] or not post:  # the author edited the text by hand: that is the post
+            post = {"platform": row["platform"], "language": row["language"], "text": row["text"]}
+        sources = "\n".join(
+            f"[{n}] {s.get('title', '')} — {s.get('url', '')}"
+            for n, s in enumerate(ctx.get("sources", []), start=1)
+        )
+        return prompts.render(
+            "post_revision",
+            self._ai.language(),
+            platform=row["platform"],
+            post_language=row["language"],
+            tone=tone or "-",
+            post=json.dumps(post, ensure_ascii=False, indent=1)[:12_000],
+            sources=sources or "-",
+            request=request[:REVISION_MAX_CHARS],
+        )
+
+    def revise(self, draft_id: int, request: str, mode: str | None = None) -> dict[str, Any]:
+        with self._db.connect() as conn:
+            row = self._row(conn, draft_id)
+        resolved, outcome = self._run(self._revision_prompt(row, request), mode, "post_revision")
+        if resolved == "chat":
+            return outcome
+        return {"mode": resolved, "draft": self._replace(row, outcome, keep_sources=True)}
+
+    def parse_revise(self, draft_id: int, text: str) -> dict[str, Any]:
+        with self._db.connect() as conn:
+            row = self._row(conn, draft_id)
+        posts = parse_answer(text, GeneratedPosts)
+        return {"mode": "chat", "draft": self._replace(row, posts, keep_sources=True)}
+
+    def _replace(
+        self, row: sqlite3.Row, posts: GeneratedPosts, keep_sources: bool = False
+    ) -> dict[str, Any]:
         candidates = [
             p
             for p in posts.posts
@@ -594,6 +645,8 @@ class GeneratorService:
             for n in post.sources_used
             if 1 <= n <= len(ctx.get("sources", []))
         ]
+        if keep_sources and not used:
+            used = json.loads(row["sources"] or "[]")
         with self._db.connect() as conn:
             conn.execute(
                 f"UPDATE drafts SET content = ?, text = ?, edited = 0, sources = ?, "

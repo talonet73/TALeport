@@ -92,7 +92,10 @@
       "placeholder": "Es. novità sull'intelligenza artificiale utili alle piccole imprese italiane",
       "review": "L'AI compila i campi dell'argomento: controllali e modificali prima di salvare.",
       "generate": "Genera la proposta"
-    }
+    },
+    "localHint": "Vuoi il post già scritto, senza copia e incolla? Fallo scrivere a Ollama, l'AI gratuita sul tuo PC. Da ora in poi l'app scriverà da sola (puoi cambiare AI in alto).",
+    "useOllama": "Scrivilo qui con Ollama",
+    "pastedPrompt": "Hai incollato il prompt, non la risposta: incollalo in {{site}}, invialo e poi incolla qui la risposta che ti dà."
   },
   "aiNotes": {
     "title": "Indicazioni per l'AI",
@@ -273,7 +276,8 @@
       "too_many": "Troppi post in una volta: massimo {{max}}. Riduci social, lingue o varianti.",
       "series_range": "La serie va da 1 a {{max}} post.",
       "no_posts": "La risposta non contiene post per i social e le lingue scelti.",
-      "reference_count": "Da 1 a 5 post per ogni social e lingua."
+      "reference_count": "Da 1 a 5 post per ogni social e lingua.",
+      "revision_empty": "Scrivi cosa vuoi cambiare nel post."
     },
     "content": {
       "unreadable": "Non riesco a leggere il file. È protetto o danneggiato?",
@@ -630,7 +634,25 @@
     "carousel": "Carosello",
     "copySlides": "Copia le slide",
     "outline": "Scaletta",
-    "thumbnail": "Miniatura"
+    "thumbnail": "Miniatura",
+    "revise": {
+      "button": "Modifica con l'AI",
+      "title": "Cosa vuoi cambiare?",
+      "placeholder": "Es.: «più corto e con una domanda finale», «parla anche del 12/12», «tono più ironico»… (Invio per inviare)",
+      "send": "Invia la modifica",
+      "hint": "L'AI selezionata riscrive questo post e lo aggiorna qui. Puoi chiedere più modifiche di seguito.",
+      "done": "✓ Post aggiornato. Vuoi cambiare altro?",
+      "quick": {
+        "shorter": "Più corto",
+        "longer": "Più lungo",
+        "ironic": "Più ironico",
+        "question": "Chiudi con una domanda",
+        "emoji": "Aggiungi qualche emoji",
+        "noHashtags": "Togli gli hashtag"
+      }
+    },
+    "openGemini": "Apri Gemini",
+    "openGeminiHint": "Copia il prompt e apre Gemini: incollalo lì per creare l'immagine"
   },
   "week": {
     "range": "Dal {{start}} al {{end}}",
@@ -889,7 +911,8 @@
       "post_generation": "Generatore",
       "long_content": "Da contenuto lungo",
       "post_regeneration": "Rigenera post",
-      "ask": "Chiedi"
+      "ask": "Chiedi",
+      "post_revision": "Modifica post con l'AI"
     }
   },
   "reports": {
@@ -1157,7 +1180,10 @@
           "Oggi: i temi più caldi per argomento, con il perché del punteggio. Da un tema apri il Dettaglio o il Generatore.",
           "Generatore e Calendario: scegli social, lingua e tono, poi trascina le bozze sui giorni. Gli orari consigliati migliorano con i risultati.",
           "Archivio: cerchi post e temi e inserisci like, commenti, condivisioni e visualizzazioni dei post pubblicati. TALeport ti dice cosa funziona e perché.",
-          "Settimana, Tendenze parole e la casella «Chiedi» mostrano grafici e risposte sui dati raccolti."
+          "Settimana, Tendenze parole e la casella «Chiedi» mostrano grafici e risposte sui dati raccolti.",
+          "Modifica con l'AI: sotto ogni bozza appena generata premi «Modifica con l'AI», scrivi cosa cambiare (o scegli «Più corto», «Più ironico»…) e premi Invio: l'AI selezionata riscrive quel post sul posto. Puoi chiedere più modifiche di seguito.",
+          "Immagine del post: ogni bozza ha un prompt in inglese pronto per Gemini, con il formato giusto per il social. «Apri Gemini» lo copia e apre Gemini: incollalo lì e chiedi l'immagine.",
+          "Con «Apri nella chat» il post lo scrive la tua chat e tu incolli qui la sua risposta, non il prompt. Per averlo già scritto senza copia e incolla premi «Scrivilo qui con Ollama»: da lì in poi l'app scrive da sola, gratis."
         ]
       },
       "video": {

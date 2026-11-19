@@ -124,6 +124,21 @@ def regenerate(request: Request, draft_id: int, body: Regenerate) -> dict[str, A
     return _ctx(request).generator.regenerate(draft_id, body.mode)
 
 
+class Revise(BaseModel):
+    request: str = Field(min_length=1, max_length=1500)
+    mode: str | None = None
+
+
+@router.post("/drafts/{draft_id}/revise")
+def revise(request: Request, draft_id: int, body: Revise) -> dict[str, Any]:
+    return _ctx(request).generator.revise(draft_id, body.request, body.mode)
+
+
+@router.post("/drafts/{draft_id}/revise/parse")
+def revise_parse(request: Request, draft_id: int, body: DraftText) -> dict[str, Any]:
+    return _ctx(request).generator.parse_revise(draft_id, body.text)
+
+
 @router.post("/drafts/{draft_id}/regenerate/parse")
 def regenerate_parse(request: Request, draft_id: int, body: DraftText) -> dict[str, Any]:
     return _ctx(request).generator.parse_regenerate(draft_id, body.text)

@@ -92,7 +92,10 @@
       "placeholder": "Ej. novedades de IA útiles para pequeñas empresas",
       "review": "La IA rellena los campos del tema: revísalos y modifícalos antes de guardar.",
       "generate": "Generar la propuesta"
-    }
+    },
+    "localHint": "¿Quieres el post ya escrito, sin copiar y pegar? Que lo escriba Ollama, la IA gratuita de tu PC. A partir de ahora la app escribirá sola (puedes cambiar de IA arriba).",
+    "useOllama": "Escríbelo aquí con Ollama",
+    "pastedPrompt": "Has pegado el prompt, no la respuesta: pégalo en {{site}}, envíalo y luego pega aquí su respuesta."
   },
   "aiNotes": {
     "title": "Indicaciones para la IA",
@@ -273,7 +276,8 @@
       "too_many": "Demasiados posts a la vez: máximo {{max}}. Reduce redes, idiomas o variantes.",
       "series_range": "La serie va de 1 a {{max}} posts.",
       "no_posts": "La respuesta no contiene posts para las redes e idiomas elegidos.",
-      "reference_count": "De 1 a 5 posts por red e idioma."
+      "reference_count": "De 1 a 5 posts por red e idioma.",
+      "revision_empty": "Escribe qué quieres cambiar en el post."
     },
     "content": {
       "unreadable": "No puedo leer el archivo. ¿Está protegido o dañado?",
@@ -630,7 +634,25 @@
     "carousel": "Carrusel",
     "copySlides": "Copiar diapositivas",
     "outline": "Guion",
-    "thumbnail": "Miniatura"
+    "thumbnail": "Miniatura",
+    "revise": {
+      "button": "Editar con la IA",
+      "title": "¿Qué quieres cambiar?",
+      "placeholder": "Ej.: «más corto y con una pregunta final», «habla también del 12/12», «tono más irónico»… (Intro para enviar)",
+      "send": "Enviar el cambio",
+      "hint": "La IA seleccionada reescribe este post y lo actualiza aquí. Puedes pedir varios cambios seguidos.",
+      "done": "✓ Post actualizado. ¿Algo más?",
+      "quick": {
+        "shorter": "Más corto",
+        "longer": "Más largo",
+        "ironic": "Más irónico",
+        "question": "Termina con una pregunta",
+        "emoji": "Añade algunos emojis",
+        "noHashtags": "Quita los hashtags"
+      }
+    },
+    "openGemini": "Abrir Gemini",
+    "openGeminiHint": "Copia el prompt y abre Gemini: pégalo allí para crear la imagen"
   },
   "week": {
     "range": "Del {{start}} al {{end}}",
@@ -889,7 +911,8 @@
       "post_generation": "Generador",
       "long_content": "Desde contenido largo",
       "post_regeneration": "Regenerar post",
-      "ask": "Preguntar"
+      "ask": "Preguntar",
+      "post_revision": "Editar post con la IA"
     }
   },
   "reports": {
@@ -1157,7 +1180,10 @@
           "Hoy: los temas más calientes por tema, con el porqué de la puntuación. Desde un tema abre el Detalle o el Generador.",
           "Generador y Calendario: elige red, idioma y tono, y arrastra los borradores a los días. Los horarios recomendados mejoran con los resultados.",
           "Archivo: busca posts y temas e introduce me gusta, comentarios, compartidos y visualizaciones de los posts publicados. TALeport te dice qué funciona y por qué.",
-          "Semana, Tendencias de palabras y la casilla «Preguntar» muestran gráficos y respuestas sobre los datos recogidos."
+          "Semana, Tendencias de palabras y la casilla «Preguntar» muestran gráficos y respuestas sobre los datos recogidos.",
+          "Editar con la IA: bajo cada borrador nuevo pulsa «Editar con la IA», escribe qué cambiar (o elige «Más corto», «Más irónico»…) y pulsa Intro: la IA seleccionada reescribe ese post en su sitio. Puedes pedir varios cambios seguidos.",
+          "Imagen del post: cada borrador tiene un prompt en inglés listo para Gemini, con el formato adecuado para la red social. «Abrir Gemini» lo copia y abre Gemini: pégalo allí y pide la imagen.",
+          "Con «Abrir en el chat» el post lo escribe tu chat y tú pegas aquí su respuesta, no el prompt. Para tenerlo ya escrito sin copiar y pegar pulsa «Escríbelo aquí con Ollama»: desde entonces la app escribe sola, gratis."
         ]
       },
       "video": {

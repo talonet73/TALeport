@@ -23,6 +23,9 @@ Cómo funciona TALeport, en breve.
 - Generador y Calendario: elige red, idioma y tono, y arrastra los borradores a los días. Los horarios recomendados mejoran con los resultados.
 - Archivo: busca posts y temas e introduce me gusta, comentarios, compartidos y visualizaciones de los posts publicados. TALeport te dice qué funciona y por qué.
 - Semana, Tendencias de palabras y la casilla «Preguntar» muestran gráficos y respuestas sobre los datos recogidos.
+- Editar con la IA: bajo cada borrador nuevo pulsa «Editar con la IA», escribe qué cambiar (o elige «Más corto», «Más irónico»…) y pulsa Intro: la IA seleccionada reescribe ese post en su sitio. Puedes pedir varios cambios seguidos.
+- Imagen del post: cada borrador tiene un prompt en inglés listo para Gemini, con el formato adecuado para la red social. «Abrir Gemini» lo copia y abre Gemini: pégalo allí y pide la imagen.
+- Con «Abrir en el chat» el post lo escribe tu chat y tú pegas aquí su respuesta, no el prompt. Para tenerlo ya escrito sin copiar y pegar pulsa «Escríbelo aquí con Ollama»: desde entonces la app escribe sola, gratis.
 
 ## Análisis de vídeo para clientes
 

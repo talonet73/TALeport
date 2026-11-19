@@ -269,3 +269,12 @@ Segnalazione: su un PC (utente `ssi`) la finestra restava vuota con «Impossibil
 - [x] Impostazione `window_mode` (auto / chrome) in Impostazioni → «Apri TALeport in»; cambiarla azzera `webview_failed` per riprovare
 - [x] Guida (Problemi) e testi IT/EN/ES; test: 11 nuovi — 220 backend
 
+## Fase 14 — Modifica con l'AI e immagini per Gemini (1.4.0)
+Richiesta: cliccando Instagram avere il post già scritto, poter chiedere modifiche dalla chat AI, e avere le indicazioni per generare l'immagine del post su Gemini.
+
+- [x] `POST /api/drafts/{id}/revise` (+ `/revise/parse`): nuovo modello `post_revision` (IT/EN/ES) con post attuale (o testo modificato a mano), fonti, tono e richiesta; riscrive la bozza sul posto, tiene le fonti se la risposta non ne indica. Funzione spesa `post_revision`
+- [x] `ReviseBox` sotto ogni bozza: campo «Cosa vuoi cambiare?» con invio, 6 modifiche rapide, supporto «Apri nella chat»
+- [x] `image_prompt` pronto per Gemini in tutti i modelli di generazione (inizia con "Create an image:", formato per social, niente loghi né testo); tasto «Apri Gemini» che copia il prompt e apre gemini.google.com
+- [x] `HandoffPanel`: riconosce il prompt incollato al posto della risposta; tasto «Scrivilo qui con Ollama» che rilancia la stessa richiesta con Ollama e lo imposta come AI predefinita
+- [x] Guida e testi IT/EN/ES; test: 7 backend (228) + 2 frontend (6); verificato dal vivo nel browser
+

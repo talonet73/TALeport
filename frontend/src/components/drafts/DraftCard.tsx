@@ -9,6 +9,7 @@ import {
   RefreshCw,
   Trash2,
   TriangleAlert,
+  WandSparkles,
 } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import { useState } from 'react'
@@ -19,6 +20,9 @@ import type { Draft } from '../../api/types'
 import { ResultsForm, ResultsLine } from '../results/ResultsForm'
 import { useErrorMessage } from '../useErrorMessage'
 import { RegenerateDialog } from './RegenerateDialog'
+import { ReviseBox } from './ReviseBox'
+
+const GEMINI_URL = 'https://gemini.google.com/app'
 
 const buttonClass =
   'flex items-center gap-1.5 rounded-xl border border-line px-3 py-1.5 text-sm font-medium text-ink hover:bg-surface-raised disabled:opacity-50'
@@ -30,7 +34,7 @@ export function DraftCard({ draft }: { draft: Draft }) {
   const [copied, setCopied] = useState<string | null>(null)
   const [editing, setEditing] = useState(false)
   const [text, setText] = useState(draft.text)
-  const [panel, setPanel] = useState<'schedule' | 'publish' | 'regenerate' | 'results' | null>(null)
+  const [panel, setPanel] = useState<'schedule' | 'publish' | 'regenerate' | 'results' | 'revise' | null>(null)
   const [when, setWhen] = useState(draft.scheduled_at ?? defaultSchedule())
   const [url, setUrl] = useState('')
 
@@ -112,11 +116,25 @@ export function DraftCard({ draft }: { draft: Draft }) {
           {draft.image_idea && <p className="mt-1 text-ink">{draft.image_idea}</p>}
           {draft.image_prompt && (
             <div className="mt-2 flex items-start gap-2">
-              <code className="flex-1 text-muted">{draft.image_prompt}</code>
-              <button type="button" onClick={() => copy('prompt', draft.image_prompt)} className={buttonClass}>
-                <ClipboardCopy className="size-3.5" aria-hidden />
-                {copied === 'prompt' ? t('drafts.copied') : t('drafts.copyPrompt')}
-              </button>
+              <code className="flex-1 whitespace-pre-wrap text-muted select-all">{draft.image_prompt}</code>
+              <div className="flex shrink-0 flex-col gap-1.5">
+                <button type="button" onClick={() => copy('prompt', draft.image_prompt)} className={buttonClass}>
+                  <ClipboardCopy className="size-3.5" aria-hidden />
+                  {copied === 'prompt' ? t('drafts.copied') : t('drafts.copyPrompt')}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    void copy('prompt', draft.image_prompt)
+                    openExternal(GEMINI_URL)
+                  }}
+                  title={t('drafts.openGeminiHint')}
+                  className={buttonClass}
+                >
+                  <ExternalLink className="size-3.5" aria-hidden />
+                  {t('drafts.openGemini')}
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -146,6 +164,15 @@ export function DraftCard({ draft }: { draft: Draft }) {
         >
           <ClipboardCopy className="size-4" aria-hidden />
           {copied === 'text' ? t('drafts.copied') : t('drafts.copy')}
+        </button>
+        <button
+          type="button"
+          onClick={() => setPanel(panel === 'revise' ? null : 'revise')}
+          aria-pressed={panel === 'revise'}
+          className={buttonClass}
+        >
+          <WandSparkles className="size-4" aria-hidden />
+          {t('drafts.revise.button')}
         </button>
         <button type="button" onClick={() => setPanel('regenerate')} className={buttonClass}>
           <RefreshCw className="size-4" aria-hidden />
@@ -231,6 +258,7 @@ export function DraftCard({ draft }: { draft: Draft }) {
           <ResultsForm draftId={draft.id} initial={draft.results} onDone={() => setPanel(null)} />
         </div>
       )}
+      {panel === 'revise' && <ReviseBox draftId={draft.id} onClose={() => setPanel(null)} />}
       {panel === 'regenerate' && <RegenerateDialog draftId={draft.id} onClose={() => setPanel(null)} />}
       {action.isError && <p className="mt-2 text-sm text-red-400">{errorMessage(action.error)}</p>}
     </article>

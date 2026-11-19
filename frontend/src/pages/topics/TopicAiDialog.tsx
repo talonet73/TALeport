@@ -36,7 +36,7 @@ export function TopicAiDialog({ editions, onApply, onClose }: TopicAiDialogProps
   return (
     <Modal title={t('ai.topic.title')} onClose={onClose} wide={flow.phase === 'handoff'}>
       {flow.phase === 'handoff' && flow.handoff ? (
-        <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+        <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
       ) : (
         <div className="space-y-4">
           <label className="flex flex-col gap-2">

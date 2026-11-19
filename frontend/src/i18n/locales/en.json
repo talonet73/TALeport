@@ -92,7 +92,10 @@
       "placeholder": "E.g. AI news useful to small businesses",
       "review": "The AI fills in the topic fields: check and edit them before saving.",
       "generate": "Generate the proposal"
-    }
+    },
+    "localHint": "Want the post already written, without copy and paste? Let Ollama write it, the free AI on your PC. From now on the app will write by itself (you can change AI at the top).",
+    "useOllama": "Write it here with Ollama",
+    "pastedPrompt": "You pasted the prompt, not the answer: paste it into {{site}}, send it, then paste its answer here."
   },
   "aiNotes": {
     "title": "Notes for the AI",
@@ -273,7 +276,8 @@
       "too_many": "Too many posts at once: max {{max}}. Reduce networks, languages or variants.",
       "series_range": "The series goes from 1 to {{max}} posts.",
       "no_posts": "The answer has no posts for the chosen networks and languages.",
-      "reference_count": "From 1 to 5 posts per network and language."
+      "reference_count": "From 1 to 5 posts per network and language.",
+      "revision_empty": "Write what you want to change in the post."
     },
     "content": {
       "unreadable": "Can't read the file. Is it protected or damaged?",
@@ -630,7 +634,25 @@
     "carousel": "Carousel",
     "copySlides": "Copy slides",
     "outline": "Outline",
-    "thumbnail": "Thumbnail"
+    "thumbnail": "Thumbnail",
+    "revise": {
+      "button": "Edit with AI",
+      "title": "What do you want to change?",
+      "placeholder": "E.g.: \"shorter, ending with a question\", \"also mention the 12/12 launch\", \"more ironic tone\"… (Enter to send)",
+      "send": "Send the change",
+      "hint": "The selected AI rewrites this post and updates it here. You can ask for more changes one after another.",
+      "done": "✓ Post updated. Anything else?",
+      "quick": {
+        "shorter": "Shorter",
+        "longer": "Longer",
+        "ironic": "More ironic",
+        "question": "End with a question",
+        "emoji": "Add a few emojis",
+        "noHashtags": "Remove the hashtags"
+      }
+    },
+    "openGemini": "Open Gemini",
+    "openGeminiHint": "Copies the prompt and opens Gemini: paste it there to create the image"
   },
   "week": {
     "range": "From {{start}} to {{end}}",
@@ -889,7 +911,8 @@
       "post_generation": "Generator",
       "long_content": "From long content",
       "post_regeneration": "Regenerate post",
-      "ask": "Ask"
+      "ask": "Ask",
+      "post_revision": "Edit post with AI"
     }
   },
   "reports": {
@@ -1157,7 +1180,10 @@
           "Today: the hottest themes per topic, with the reason behind the score. From a theme open the Detail or the Generator.",
           "Generator and Calendar: choose platform, language and tone, then drag drafts onto days. Suggested times improve with your results.",
           "Archive: search posts and themes and enter likes, comments, shares and views of published posts. TALeport tells you what works and why.",
-          "Week, Keyword trends and the “Ask” box show charts and answers on the collected data."
+          "Week, Keyword trends and the “Ask” box show charts and answers on the collected data.",
+          "Edit with AI: under each new draft press \"Edit with AI\", write what to change (or pick \"Shorter\", \"More ironic\"…) and press Enter: the selected AI rewrites that post in place. You can ask for more changes one after another.",
+          "Post image: each draft has an English prompt ready for Gemini, in the right format for the platform. \"Open Gemini\" copies it and opens Gemini: paste it there and ask for the image.",
+          "With \"Open in chat\" your chat writes the post and you paste its answer here, not the prompt. To get it already written without copy and paste, press \"Write it here with Ollama\": from then on the app writes by itself, for free."
         ]
       },
       "video": {

@@ -114,7 +114,7 @@ export function AskPage() {
 
       {flow.phase === 'handoff' && flow.handoff && (
         <Modal title={t('ask.handoffTitle')} onClose={flow.reset} wide>
-          <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+          <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
         </Modal>
       )}
     </div>

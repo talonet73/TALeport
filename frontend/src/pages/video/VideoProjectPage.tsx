@@ -278,7 +278,7 @@ export function VideoProjectPage() {
 
       <Card title={t('video.step3.title')} description={t('video.step3.text', { done: withResults, total: project.videos.length })}>
         {flow.phase === 'handoff' && flow.handoff ? (
-          <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+          <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
         ) : (
           <div className="flex flex-wrap items-end gap-3">
             <div className="min-w-56">

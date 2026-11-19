@@ -23,6 +23,9 @@ How TALeport works, in short.
 - Generator and Calendar: choose platform, language and tone, then drag drafts onto days. Suggested times improve with your results.
 - Archive: search posts and themes and enter likes, comments, shares and views of published posts. TALeport tells you what works and why.
 - Week, Keyword trends and the “Ask” box show charts and answers on the collected data.
+- Edit with AI: under each new draft press "Edit with AI", write what to change (or pick "Shorter", "More ironic"…) and press Enter: the selected AI rewrites that post in place. You can ask for more changes one after another.
+- Post image: each draft has an English prompt ready for Gemini, in the right format for the platform. "Open Gemini" copies it and opens Gemini: paste it there and ask for the image.
+- With "Open in chat" your chat writes the post and you paste its answer here, not the prompt. To get it already written without copy and paste, press "Write it here with Ollama": from then on the app writes by itself, for free.
 
 ## Video analysis for clients
 

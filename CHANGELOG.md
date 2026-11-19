@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.4.0 — 2026-11-19
+
+Modifica con l'AI e immagini per Gemini · Edit with AI and images for Gemini
+
+**Italiano**
+
+- «Modifica con l'AI» sotto ogni bozza: scrivi cosa cambiare («più corto», «parla anche del 12/12»…) o scegli una modifica rapida, premi Invio e l'AI selezionata riscrive quel post sul posto, mantenendo fatti e fonti. Funziona anche con «Apri nella chat».
+- Prompt per l'immagine pronto per Gemini: dettagliato, in inglese, con il formato giusto per ogni social (Instagram 4:5, TikTok 9:16, LinkedIn e Facebook 1:1, YouTube 16:9). Il tasto «Apri Gemini» lo copia e apre Gemini.
+- «Apri nella chat» più chiaro: se nel riquadro incolli il prompt invece della risposta, l'app te lo dice. Il nuovo tasto «Scrivilo qui con Ollama» fa scrivere il post subito all'AI gratuita sul tuo PC e la imposta per le volte successive.
+
+**English**
+
+- "Edit with AI" under each draft: write what to change ("shorter", "also mention the 12/12 launch"…) or pick a quick edit, press Enter and the selected AI rewrites that post in place, keeping facts and sources. It also works with "Open in chat".
+- Image prompt ready for Gemini: detailed, in English, in the right format for each platform (Instagram 4:5, TikTok 9:16, LinkedIn and Facebook 1:1, YouTube 16:9). The "Open Gemini" button copies it and opens Gemini.
+- Clearer "Open in chat": if you paste the prompt instead of the answer, the app tells you. The new "Write it here with Ollama" button has the free AI on your PC write the post right away and sets it for next time.
+
 ## 1.3.1 — 2026-11-19
 
 TALeport si apre anche in Chrome · TALeport also opens in Chrome

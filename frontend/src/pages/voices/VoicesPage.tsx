@@ -149,7 +149,7 @@ function LearnFromDocuments({ onSuggestion }: { onSuggestion: (voice: VoiceSugge
   })
 
   if (flow.phase === 'handoff' && flow.handoff) {
-    return <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} />
+    return <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error} onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />
   }
   return (
     <div className="space-y-4">

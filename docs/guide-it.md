@@ -23,6 +23,9 @@ Come funziona TALeport, in breve.
 - Generatore e Calendario: scegli social, lingua e tono, poi trascina le bozze sui giorni. Gli orari consigliati migliorano con i risultati.
 - Archivio: cerchi post e temi e inserisci like, commenti, condivisioni e visualizzazioni dei post pubblicati. TALeport ti dice cosa funziona e perché.
 - Settimana, Tendenze parole e la casella «Chiedi» mostrano grafici e risposte sui dati raccolti.
+- Modifica con l'AI: sotto ogni bozza appena generata premi «Modifica con l'AI», scrivi cosa cambiare (o scegli «Più corto», «Più ironico»…) e premi Invio: l'AI selezionata riscrive quel post sul posto. Puoi chiedere più modifiche di seguito.
+- Immagine del post: ogni bozza ha un prompt in inglese pronto per Gemini, con il formato giusto per il social. «Apri Gemini» lo copia e apre Gemini: incollalo lì e chiedi l'immagine.
+- Con «Apri nella chat» il post lo scrive la tua chat e tu incolli qui la sua risposta, non il prompt. Per averlo già scritto senza copia e incolla premi «Scrivilo qui con Ollama»: da lì in poi l'app scrive da sola, gratis.
 
 ## Analisi video per i clienti
 

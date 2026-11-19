@@ -250,3 +250,13 @@ Richiesta: nella creazione dei post poter caricare una reference esterna (Word, 
 - [x] Tono scelto (`voice_id`) anche per tema e contenuto lungo; il tono è salvato nel contesto della bozza, quindi la rigenerazione lo mantiene; il profilo dell'argomento è preselezionato nell'interfaccia
 - [x] Pagina «Tono di voce», selettore del tono nel Generatore e in Da contenuto lungo, guida e testi IT/EN/ES
 - [x] Test: 14 nuovi (PPTX/DOCX, profili e argomenti esclusivi, analisi con provider e chat, reference con tono dei documenti, con profilo, via chat, limiti, tono su tema e contenuto lungo, API, prompt) — 203 backend
+
+## Fase 13 — Indicazioni per l'AI (1.3.0)
+Richiesta: un box sempre agganciato all'AI selezionata per personalizzare le richieste (dettagli in più oltre alla reference), richiamabile con un tasto, fluttuante e spostabile.
+
+- [x] Box fluttuante trascinabile (`components/ai/AiNotesPanel.tsx`): testo (max 1500 caratteri), interruttore «Aggiungile a ogni richiesta», selettore dell'AI selezionata; testo, posizione, stato e apertura salvati nello storage della finestra (`aiNotes.ts`)
+- [x] Tasto nella barra in alto con pallino verde quando le indicazioni sono attive; riga «Indicazioni extra attive · modifica» accanto a «Genera» in Generatore (tema e reference) e Da contenuto lungo
+- [x] Il client API invia il testo nell'header `X-TALeport-Extra` (URL-encoded); il middleware lo mette in un contextvar per la durata della richiesta (`ai/extra.py`) e `prompts.render` lo aggiunge in fondo a ogni prompt con un'intestazione nella lingua dell'interfaccia: vale per ogni AI, per «Apri nella chat» e per i tentativi correttivi
+- [x] Guida e testi IT/EN/ES
+- [x] Test: 5 nuovi (prompt invariati senza indicazioni, intestazione per lingua e testo per la chat, pulizia e limite, tentativi correttivi, header attraverso l'API) — 209 backend; verificato dal vivo nel browser (spostamento, salvataggio dopo il riavvio, header ed emoji nel prompt)
+

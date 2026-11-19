@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.0 — 2026-11-19
+
+Indicazioni per l'AI · Notes for the AI
+
+**Italiano**
+
+- Nuovo tasto «Indicazioni per l'AI» nella barra in alto: apre un box fluttuante che puoi trascinare dove non dà fastidio. Scrivi lì i dettagli in più (per esempio «su Instagram massimo 3 emoji, chiudi con una domanda, cita il lancio del 12/12») e, finché è acceso, li riceve ogni richiesta all'AI selezionata: post da tema, da reference, da contenuto lungo, rigenerazioni, analisi video, domande. Funziona con Ollama, con le chiavi API e con «Apri nella chat».
+- Le indicazioni si sommano al tono di voce e alla reference. Testo, posizione e stato restano salvati; un pallino verde sul tasto e una riga accanto a «Genera» ti dicono quando sono attive. Dal box puoi anche cambiare l'AI selezionata.
+
+**English**
+
+- New "Notes for the AI" button in the top bar: it opens a floating box you can drag out of the way. Write your extra details there (e.g. "at most 3 emojis on Instagram, end with a question, mention the 12/12 launch") and, while it is on, every request to the selected AI gets them: posts from a theme, a reference or long content, regenerations, video analysis, questions. It works with Ollama, API keys and "Open in chat".
+- The notes add to the tone of voice and the reference. Text, position and on/off are remembered; a green dot on the button and a line next to "Generate" show when they are active. The box also lets you switch the selected AI.
+
 ## 1.2.0 — 2026-11-09
 
 Post da una reference e profili di tono di voce · Posts from a reference and tone-of-voice profiles

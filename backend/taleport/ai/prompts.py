@@ -11,12 +11,30 @@ from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 
+from taleport.ai import extra
+
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompt_templates"
 FALLBACK_LANGUAGE = "en"
 LANGUAGE_NAMES = {
     "it": {"it": "italiano", "en": "inglese", "es": "spagnolo"},
     "en": {"it": "Italian", "en": "English", "es": "Spanish"},
     "es": {"it": "italiano", "en": "inglés", "es": "español"},
+}
+
+# Heading of the user's extra instructions (floating "AI notes" box), added to every prompt.
+EXTRA_HEADING = {
+    "it": (
+        "Indicazioni aggiuntive dell'utente: seguile per contenuto, stile e dettagli, anche se "
+        "cambiano quanto chiesto sopra. Non cambiare però il formato della risposta richiesto."
+    ),
+    "en": (
+        "Additional instructions from the user: follow them for content, style and details, "
+        "even where they change what is asked above. Do not change the required answer format."
+    ),
+    "es": (
+        "Indicaciones adicionales del usuario: síguelas en contenido, estilo y detalles, aunque "
+        "cambien lo pedido arriba. No cambies el formato de respuesta requerido."
+    ),
 }
 
 _SECTION = re.compile(r"^# (system|user|retry)\s*$", re.MULTILINE)
@@ -66,6 +84,13 @@ def _fill(text: str, values: dict[str, str]) -> str:
     return _VARIABLE.sub(lambda m: values.get(m.group(1), m.group(0)), text)
 
 
+def with_extra(user: str, language: str, notes: str) -> str:
+    if not notes:
+        return user
+    heading = EXTRA_HEADING.get(language, EXTRA_HEADING[FALLBACK_LANGUAGE])
+    return f"{user}\n\n{heading}\n<<<\n{notes}\n>>>"
+
+
 def render(name: str, language: str, **values: str) -> Prompt:
     template = load(name, language)
     values = {"output_language": LANGUAGE_NAMES[language][language], **values}
@@ -73,7 +98,7 @@ def render(name: str, language: str, **values: str) -> Prompt:
         name=name,
         version=template.version,
         system=_fill(template.system, values),
-        user=_fill(template.user, values),
+        user=with_extra(_fill(template.user, values), language, extra.current()),
         retry=_fill(template.retry, {k: v for k, v in values.items() if k != "error"}),
     )
 

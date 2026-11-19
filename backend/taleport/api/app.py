@@ -19,6 +19,7 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, Response
 
+from taleport.ai import extra as ai_extra
 from taleport.api import (
     ai_routes,
     analysis_routes,
@@ -79,7 +80,12 @@ def create_app(ctx: AppContext, static_dir: Path | None = None) -> FastAPI:
             supplied = request.headers.get(TOKEN_HEADER) or request.query_params.get("t") or ""
             if not secrets.compare_digest(supplied, ctx.token):
                 return JSONResponse(AppError("unauthorized", 401).to_payload(), status_code=401)
-        return await call_next(request)
+        # Floating "AI notes" box: its text reaches every prompt built during this request.
+        token = ai_extra.set_current(ai_extra.from_header(request.headers.get(ai_extra.HEADER)))
+        try:
+            return await call_next(request)
+        finally:
+            ai_extra.reset(token)
 
     @app.exception_handler(AppError)
     async def app_error_handler(_: Request, exc: AppError) -> JSONResponse:

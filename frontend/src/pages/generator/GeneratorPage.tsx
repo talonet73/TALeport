@@ -7,6 +7,7 @@ import { aiPost, useSettings, useToday, useTopics } from '../../api/hooks'
 import { useResultsSummary } from '../../api/planner'
 import type { AiMode, Language, Platform } from '../../api/types'
 import { AiModeSelect } from '../../components/ai/AiModeSelect'
+import { AiNotesHint } from '../../components/ai/AiNotesPanel'
 import { HandoffPanel } from '../../components/ai/HandoffPanel'
 import { useAiFlow } from '../../components/ai/useAiFlow'
 import { Card } from '../../components/Card'
@@ -162,15 +163,18 @@ export function GeneratorPage() {
             {t('generator.count', { count: total, max: MAX_POSTS })}
           </p>
           {flow.error !== null && flow.phase !== 'handoff' && <p className="text-red-400">{errorMessage(flow.error)}</p>}
-          <button
-            type="button"
-            disabled={!themeId || !platforms.length || !languages.length || total > MAX_POSTS || flow.busy}
-            onClick={() => flow.run(mode ?? settings?.default_ai ?? 'chat')}
-            className="flex items-center gap-2 rounded-full bg-accent-gradient px-5 py-2.5 font-semibold text-on-accent disabled:opacity-50"
-          >
-            {flow.busy ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Sparkles className="size-4" aria-hidden />}
-            {flow.busy ? t('ai.working') : t('generator.generate')}
-          </button>
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              disabled={!themeId || !platforms.length || !languages.length || total > MAX_POSTS || flow.busy}
+              onClick={() => flow.run(mode ?? settings?.default_ai ?? 'chat')}
+              className="flex items-center gap-2 rounded-full bg-accent-gradient px-5 py-2.5 font-semibold text-on-accent disabled:opacity-50"
+            >
+              {flow.busy ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Sparkles className="size-4" aria-hidden />}
+              {flow.busy ? t('ai.working') : t('generator.generate')}
+            </button>
+            <AiNotesHint />
+          </div>
         </div>
       </Card>
       )}

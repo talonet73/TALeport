@@ -94,6 +94,23 @@
       "generate": "Generar la propuesta"
     }
   },
+  "aiNotes": {
+    "title": "Indicaciones para la IA",
+    "button": "Indicaciones para la IA",
+    "buttonActive": "Indicaciones para la IA (activas)",
+    "drag": "Arrastra para mover",
+    "close": "Cerrar (el texto queda guardado)",
+    "sentTo": "IA seleccionada",
+    "enabled": "Añadirlas a cada solicitud",
+    "placeholder": "Ej.: «En Instagram máximo 3 emojis y termina con una pregunta. En LinkedIn sin hashtags. Menciona el lanzamiento del 12/12.»",
+    "statusOn": "✓ Activas: cada solicitud a la IA las recibe",
+    "statusPaused": "En pausa: no se envían",
+    "statusEmpty": "Escribe aquí los detalles extra",
+    "clear": "Vaciar",
+    "help": "Valen para cualquier IA seleccionada, también con «Abrir en el chat»: posts desde un tema, una referencia o un contenido largo, regeneraciones, análisis de vídeo y preguntas. Se suman al tono de voz y a la referencia.",
+    "hintActive": "Indicaciones extra activas · editar",
+    "hintAdd": "Añadir indicaciones extra"
+  },
   "placeholder": {
     "title": "En construcción",
     "body": "Esta sección llegará en la fase {{phase}} del desarrollo."
@@ -1159,6 +1176,7 @@
           "Ollama: gratis y en tu PC. Instálalo desde el sitio oficial, ábrelo y descarga un modelo.",
           "Clave API (Claude, ChatGPT, Grok, Perplexity, Gemini): uso automático de pago. El coste estimado va al contador de gasto y el límite mensual bloquea las llamadas al alcanzarlo.",
           "«Abrir en el chat»: usa tu cuenta en el navegador. TALeport copia el prompt, abre el sitio y tú pegas aquí la respuesta. Gratis, sin claves.",
+          "Indicaciones para la IA: pulsa el botón del bloc de notas arriba (junto a las notificaciones). Se abre un cuadro que puedes mover donde no moleste: escribe detalles extra (por ejemplo «en Instagram máximo 3 emojis, menciona el lanzamiento del 12/12») y, mientras esté activo, cada solicitud a la IA seleccionada los recibe, también con «Abrir en el chat». Se suman al tono de voz y a la referencia; el punto verde indica que están activas.",
           "Si la IA elegida no está disponible, TALeport pasa sola a «Abrir en el chat» y te dice por qué."
         ]
       },

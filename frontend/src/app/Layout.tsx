@@ -3,6 +3,7 @@ import { Outlet } from 'react-router'
 
 import { useServerEvents, useSettings } from '../api/hooks'
 import { setLanguage } from '../i18n'
+import { AiNotesPanel } from '../components/ai/AiNotesPanel'
 import { useApplyTheme } from '../theme/useApplyTheme'
 import { FirstRunWizard } from './FirstRunWizard'
 import { ScanPanel } from './ScanPanel'
@@ -31,6 +32,7 @@ export function Layout() {
         </main>
       </div>
       <ScanPanel />
+      <AiNotesPanel />
     </div>
   )
 }

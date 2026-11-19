@@ -1,3 +1,4 @@
+import { aiNotesHeaders } from '../components/ai/aiNotes'
 import { getToken } from './session'
 
 /** Error returned by the backend as `{ error: { code, params } }`; `code` is an i18n key under `errors.`. */
@@ -19,6 +20,7 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
       headers: {
         'Content-Type': 'application/json',
         'X-TALeport-Token': getToken(),
+        ...aiNotesHeaders(),
         ...init.headers,
       },
     })

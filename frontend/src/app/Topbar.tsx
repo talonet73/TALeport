@@ -19,6 +19,7 @@ import {
   useNotifications,
 } from '../api/planner'
 import { AI_MODES, type AiMode } from '../api/types'
+import { AiNotesButton } from '../components/ai/AiNotesPanel'
 
 export function Topbar() {
   const { t } = useTranslation()
@@ -44,6 +45,7 @@ export function Topbar() {
         <CircleHelp className="size-5" aria-hidden />
       </Link>
       <NotificationBell />
+      <AiNotesButton />
       <AiSelector />
     </header>
   )

@@ -42,6 +42,7 @@ Come funziona TALeport, in breve.
 - Ollama: gratis e sul tuo PC. Installalo dal sito ufficiale, avvialo e scarica un modello.
 - Chiave API (Claude, ChatGPT, Grok, Perplexity, Gemini): uso automatico a pagamento. Il costo stimato va nel contatore spesa e il tetto mensile blocca le chiamate quando lo raggiungi.
 - «Apri nella chat»: usa il tuo account nel browser. TALeport copia il prompt, apre il sito e tu incolli qui la risposta. Gratis, senza chiavi.
+- Indicazioni per l'AI: premi il tasto col blocco note in alto (accanto alle notifiche). Si apre un box che puoi spostare dove non dà fastidio: scrivi dettagli in più (per esempio «su Instagram massimo 3 emoji, cita il lancio del 12/12») e, finché è acceso, li riceve ogni richiesta all'AI selezionata, anche con «Apri nella chat». Si sommano al tono di voce e alla reference; il pallino verde indica che sono attive.
 - Se l'AI scelta non è disponibile, TALeport passa da sola ad «Apri nella chat» e ti dice perché.
 
 ## Report PDF e «Chiedi»

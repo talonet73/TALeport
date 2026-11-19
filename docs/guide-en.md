@@ -42,6 +42,7 @@ How TALeport works, in short.
 - Ollama: free and on your PC. Install it from the official site, start it and download a model.
 - API key (Claude, ChatGPT, Grok, Perplexity, Gemini): automatic, paid use. The estimated cost goes into the spending counter and the monthly cap blocks calls once reached.
 - “Open in chat”: uses your account in the browser. TALeport copies the prompt, opens the site and you paste the answer back. Free, no keys.
+- Notes for the AI: press the notepad button at the top (next to notifications). A box opens that you can move out of the way: write extra details (e.g. "at most 3 emojis on Instagram, mention the 12/12 launch") and, while it is on, every request to the selected AI gets them, "Open in chat" included. They add to the tone of voice and the reference; the green dot shows they are active.
 - If the chosen AI is not available, TALeport switches to “Open in chat” by itself and tells you why.
 
 ## PDF reports and “Ask”

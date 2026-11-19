@@ -94,6 +94,23 @@
       "generate": "Genera la proposta"
     }
   },
+  "aiNotes": {
+    "title": "Indicazioni per l'AI",
+    "button": "Indicazioni per l'AI",
+    "buttonActive": "Indicazioni per l'AI (attive)",
+    "drag": "Trascina per spostare",
+    "close": "Chiudi (il testo resta salvato)",
+    "sentTo": "AI selezionata",
+    "enabled": "Aggiungile a ogni richiesta",
+    "placeholder": "Es.: «Su Instagram massimo 3 emoji e chiudi con una domanda. Su LinkedIn niente hashtag. Parla del lancio del 12/12 e cita la Curva Sud.»",
+    "statusOn": "✓ Attive: le riceve ogni richiesta all'AI",
+    "statusPaused": "In pausa: non vengono inviate",
+    "statusEmpty": "Scrivi qui i dettagli in più",
+    "clear": "Svuota",
+    "help": "Valgono per qualsiasi AI selezionata, anche con «Apri nella chat»: post da tema, da reference, da contenuto lungo, rigenerazioni, analisi video e domande. Si sommano al tono di voce e alla reference.",
+    "hintActive": "Indicazioni extra attive · modifica",
+    "hintAdd": "Aggiungi indicazioni extra"
+  },
   "placeholder": {
     "title": "In costruzione",
     "body": "Questa sezione arriverà nella fase {{phase}} dello sviluppo."
@@ -1159,6 +1176,7 @@
           "Ollama: gratis e sul tuo PC. Installalo dal sito ufficiale, avvialo e scarica un modello.",
           "Chiave API (Claude, ChatGPT, Grok, Perplexity, Gemini): uso automatico a pagamento. Il costo stimato va nel contatore spesa e il tetto mensile blocca le chiamate quando lo raggiungi.",
           "«Apri nella chat»: usa il tuo account nel browser. TALeport copia il prompt, apre il sito e tu incolli qui la risposta. Gratis, senza chiavi.",
+          "Indicazioni per l'AI: premi il tasto col blocco note in alto (accanto alle notifiche). Si apre un box che puoi spostare dove non dà fastidio: scrivi dettagli in più (per esempio «su Instagram massimo 3 emoji, cita il lancio del 12/12») e, finché è acceso, li riceve ogni richiesta all'AI selezionata, anche con «Apri nella chat». Si sommano al tono di voce e alla reference; il pallino verde indica che sono attive.",
           "Se l'AI scelta non è disponibile, TALeport passa da sola ad «Apri nella chat» e ti dice perché."
         ]
       },

@@ -53,6 +53,9 @@ class AppSettings(BaseModel):
     retention_months: Literal[0, 3, 6, 12, 24] = 6  # collected items kept; 0 = forever
     check_updates: bool = True
     update_url: str = Field(UPDATE_URL, max_length=300, pattern=r"^(https://\S+)?$")  # "" = off
+    # 1.3.1: where the interface opens. "auto" = built-in window, Chrome if it cannot start.
+    window_mode: Literal["auto", "chrome"] = "auto"
+    webview_failed: bool = False  # set when the built-in window did not start on this PC
 
     @field_validator("posting_times")
     @classmethod

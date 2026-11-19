@@ -42,6 +42,9 @@ class AppWindow:
         self._window.on_top = True
         self._window.on_top = False
 
+    def hide(self) -> None:
+        self._window.hide()
+
     def quit(self) -> None:
         self._quitting = True
         self._window.destroy()

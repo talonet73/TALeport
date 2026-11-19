@@ -90,3 +90,9 @@ def focus_window(request: Request) -> None:
     on_focus = _ctx(request).on_focus
     if on_focus:
         on_focus()
+
+
+@router.post("/app/ready", status_code=204)
+def ui_ready(request: Request) -> None:
+    """Called by the interface once it has loaded: the built-in window works."""
+    _ctx(request).ui_ready.set()

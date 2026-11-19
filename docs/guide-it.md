@@ -71,3 +71,4 @@ Come funziona TALeport, in breve.
 - YouTube saltato: manca la chiave o è finita la quota del giorno (si azzera ogni notte, ora del Pacifico).
 - Ollama non risponde: controlla che sia avviato (icona vicino all'orologio) e che abbia almeno un modello.
 - Per una segnalazione esporta il registro errori dalle Impostazioni: non contiene chiavi API.
+- La finestra resta vuota o compare «Impossibile creare la directory dei dati»: TALeport si riapre da solo in Chrome entro pochi secondi e da lì in poi parte in Chrome. Puoi sceglierlo anche tu in Impostazioni → «Apri TALeport in».

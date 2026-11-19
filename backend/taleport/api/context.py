@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import threading
 import webbrowser
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -77,6 +78,7 @@ class AppContext:
     version: str = __version__
     # Hooks set by the desktop shell (window, scheduler); absent in tests and --no-window.
     on_focus: Callable[[], None] | None = None
+    ui_ready: threading.Event = field(default_factory=threading.Event)  # the UI has loaded
     next_scan_at: Callable[[], datetime | None] = lambda: None
     open_url: Callable[[str], object] = field(default=webbrowser.open)
 

@@ -19,6 +19,8 @@ export interface AppSettings {
   scan_time: string
   start_with_windows: boolean
   close_to_tray: boolean
+  window_mode: 'auto' | 'chrome'
+  webview_failed: boolean
   first_run_completed: boolean
   ai_models: Record<string, string>
   ollama_url: string

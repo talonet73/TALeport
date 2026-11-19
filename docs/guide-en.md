@@ -71,3 +71,4 @@ How TALeport works, in short.
 - YouTube skipped: the key is missing or today's quota is used up (it resets every night, Pacific time).
 - Ollama does not respond: check that it is running (icon near the clock) and has at least one model.
 - To report a problem, export the error log from Settings: it contains no API keys.
+- The window stays empty or shows "Unable to create data directory": TALeport reopens in Chrome by itself within a few seconds and starts in Chrome from then on. You can also choose it in Settings → "Open TALeport in".

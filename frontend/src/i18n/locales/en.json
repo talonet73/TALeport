@@ -176,6 +176,13 @@
       "startWithWindows": "Start TALeport with Windows (minimized to the system tray)",
       "closeToTray": "Closing the window minimizes to the system tray",
       "closeToTrayHint": "This way scheduled scans run even with the window closed. To quit, use the menu of the icon near the clock."
+    },
+    "window": {
+      "label": "Open TALeport in",
+      "auto": "Built-in window (recommended)",
+      "chrome": "Google Chrome",
+      "hint": "Applies from the next start. With \"Google Chrome\" TALeport opens in a Chrome window without tabs, separate from your everyday Chrome; without Chrome it uses Edge.",
+      "failed": "The built-in window did not start on this PC, so TALeport opens in Chrome. Pick an option again to retry at the next start."
     }
   },
   "errors": {
@@ -1212,7 +1219,8 @@
           "A source does not respond: you see it in the bell and in the error log. The other sources keep working.",
           "YouTube skipped: the key is missing or today's quota is used up (it resets every night, Pacific time).",
           "Ollama does not respond: check that it is running (icon near the clock) and has at least one model.",
-          "To report a problem, export the error log from Settings: it contains no API keys."
+          "To report a problem, export the error log from Settings: it contains no API keys.",
+          "The window stays empty or shows \"Unable to create data directory\": TALeport reopens in Chrome by itself within a few seconds and starts in Chrome from then on. You can also choose it in Settings → \"Open TALeport in\"."
         ]
       }
     }

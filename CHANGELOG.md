@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.3.1 — 2026-11-19
+
+TALeport si apre anche in Chrome · TALeport also opens in Chrome
+
+**Italiano**
+
+- Risolto: su alcuni PC la finestra restava vuota con l'avviso «Impossibile creare la directory dei dati» (la finestra integrata di Windows non riusciva a scrivere nella sua cartella). Ora TALeport controlla la cartella prima di partire e, se non va bene, ne usa un'altra.
+- Se la finestra integrata comunque non si carica, dopo pochi secondi TALeport si riapre da solo in Chrome (una finestra senza schede, separata dal tuo Chrome) e dagli avvii successivi parte direttamente lì. Se Chrome manca usa Edge.
+- Nuova impostazione «Apri TALeport in»: finestra integrata oppure Google Chrome. Uscendo dall'icona vicino all'orologio si chiude anche la finestra di Chrome.
+
+**English**
+
+- Fixed: on some PCs the window stayed empty with "Unable to create data directory" (the built-in Windows window could not write its folder). TALeport now checks the folder before starting and uses another one if needed.
+- If the built-in window still does not load, after a few seconds TALeport reopens by itself in Chrome (a window without tabs, separate from your Chrome) and starts there from then on. Without Chrome it uses Edge.
+- New setting "Open TALeport in": built-in window or Google Chrome. Quitting from the icon next to the clock also closes the Chrome window.
+
 ## 1.3.0 — 2026-11-19
 
 Indicazioni per l'AI · Notes for the AI

@@ -161,6 +161,24 @@ function ScanSettingsCard() {
             <p className="max-w-prose text-sm text-muted">{t('settings.scan.closeToTrayHint')}</p>
           </div>
         </div>
+        <label className="flex flex-wrap items-start gap-3">
+          <span className="w-64 pt-2 font-medium text-ink">{t('settings.window.label')}</span>
+          <span className="flex flex-col gap-1.5">
+            <select
+              value={settings.window_mode}
+              onChange={(e) => update.mutate({ window_mode: e.target.value as 'auto' | 'chrome' })}
+              className={fieldClass}
+            >
+              <option value="auto">{t('settings.window.auto')}</option>
+              <option value="chrome">{t('settings.window.chrome')}</option>
+            </select>
+            <span className="max-w-prose text-sm text-muted">
+              {settings.window_mode === 'auto' && settings.webview_failed
+                ? t('settings.window.failed')
+                : t('settings.window.hint')}
+            </span>
+          </span>
+        </label>
       </div>
     </Card>
   )

@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
+import logging
 import os
 import sys
+import tempfile
+import uuid
 from pathlib import Path
 
 from taleport import APP_NAME
+
+log = logging.getLogger(__name__)
 
 
 def data_dir() -> Path:
@@ -44,8 +49,44 @@ def branding_dir() -> Path:
     return _subdir("branding")
 
 
+def _writable(path: Path) -> bool:
+    """True if this user can create and delete files in `path` (and in WebView2's own
+    `EBWebView` subfolder, when it already exists)."""
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+        for folder in (path, path / "EBWebView"):
+            if folder.is_dir():
+                probe = folder / f".write-test-{uuid.uuid4().hex}"
+                probe.write_bytes(b"ok")
+                probe.unlink()
+        return True
+    except OSError as exc:
+        log.warning("Folder not writable: %s (%s)", path, exc)
+        return False
+
+
+def first_writable(*candidates: Path) -> Path:
+    for path in candidates:
+        if _writable(path):
+            return path
+    return candidates[-1]
+
+
 def webview_storage_dir() -> Path:
-    return _subdir("webview")
+    """Data folder of the built-in window (Edge WebView2). If it cannot be written (left behind
+    by another account, blocked by security software) a fresh folder is used instead."""
+    return first_writable(
+        data_dir() / "webview",
+        data_dir() / "webview2",
+        Path(tempfile.gettempdir()) / f"{APP_NAME}-webview",
+    )
+
+
+def browser_profile_dir() -> Path:
+    """Profile of the Chrome/Edge app window (separate from the user's own browser profile)."""
+    return first_writable(
+        data_dir() / "browser", Path(tempfile.gettempdir()) / f"{APP_NAME}-browser"
+    )
 
 
 def instance_file() -> Path:

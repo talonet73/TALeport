@@ -260,3 +260,12 @@ Richiesta: un box sempre agganciato all'AI selezionata per personalizzare le ric
 - [x] Guida e testi IT/EN/ES
 - [x] Test: 5 nuovi (prompt invariati senza indicazioni, intestazione per lingua e testo per la chat, pulizia e limite, tentativi correttivi, header attraverso l'API) — 209 backend; verificato dal vivo nel browser (spostamento, salvataggio dopo il riavvio, header ed emoji nel prompt)
 
+## Correzione 1.3.1 — Finestra integrata che non parte, apertura in Chrome
+Segnalazione: su un PC (utente `ssi`) la finestra restava vuota con «Impossibile creare la directory dei dati» per `...\TALeport\webview\EBWebView`. Richiesta: poter partire anche con Chrome.
+
+- [x] `paths.webview_storage_dir()` prova a scrivere nella cartella (e in `EBWebView`); se non riesce usa `webview2` o una cartella temporanea
+- [x] `browser_shell.py`: Chrome in modalità app (`--app`, profilo proprio in `TALeport\browser`), poi Edge, poi il browser predefinito; chiusura della finestra rilevata (esce se «riduci nella barra» è spento) e chiusa all'uscita
+- [x] Rete di sicurezza: l'interfaccia chiama `POST /api/app/ready` al caricamento; se in 25 s non arriva, la finestra integrata si nasconde, TALeport si apre in Chrome e `webview_failed` fa partire in Chrome dagli avvii successivi. Anche un'eccezione all'avvio della finestra passa a Chrome
+- [x] Impostazione `window_mode` (auto / chrome) in Impostazioni → «Apri TALeport in»; cambiarla azzera `webview_failed` per riprovare
+- [x] Guida (Problemi) e testi IT/EN/ES; test: 11 nuovi — 220 backend
+

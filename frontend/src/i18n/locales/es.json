@@ -176,6 +176,13 @@
       "startWithWindows": "Iniciar TALeport con Windows (minimizado en la bandeja del sistema)",
       "closeToTray": "Al cerrar la ventana, minimizar en la bandeja del sistema",
       "closeToTrayHint": "Así los escaneos programados se ejecutan aunque la ventana esté cerrada. Para salir, usa el menú del icono junto al reloj."
+    },
+    "window": {
+      "label": "Abrir TALeport en",
+      "auto": "Ventana integrada (recomendado)",
+      "chrome": "Google Chrome",
+      "hint": "Se aplica desde el próximo inicio. Con «Google Chrome» TALeport se abre en una ventana de Chrome sin pestañas, separada de tu Chrome de siempre; sin Chrome usa Edge.",
+      "failed": "En este PC la ventana integrada no arrancó, así que TALeport se abre en Chrome. Elige de nuevo una opción para reintentarlo en el próximo inicio."
     }
   },
   "errors": {
@@ -1212,7 +1219,8 @@
           "Una fuente no responde: lo ves en la campana y en el registro de errores. Las demás fuentes siguen funcionando.",
           "YouTube omitido: falta la clave o se acabó la cuota del día (se reinicia cada noche, hora del Pacífico).",
           "Ollama no responde: comprueba que esté abierto (icono junto al reloj) y que tenga al menos un modelo.",
-          "Para avisar de un problema exporta el registro de errores desde los Ajustes: no contiene claves API."
+          "Para avisar de un problema exporta el registro de errores desde los Ajustes: no contiene claves API.",
+          "La ventana se queda vacía o aparece «No se puede crear el directorio de datos»: TALeport se vuelve a abrir solo en Chrome en pocos segundos y desde entonces arranca en Chrome. También puedes elegirlo en Ajustes → «Abrir TALeport en»."
         ]
       }
     }

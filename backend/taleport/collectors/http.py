@@ -16,7 +16,8 @@ from taleport.collectors.base import CollectorError
 
 log = logging.getLogger(__name__)
 
-USER_AGENT = f"TALeport/{__version__} (Windows desktop app; trend research)"
+# Wikimedia refuses clients without a way to contact the author (403 since 2026-11).
+USER_AGENT = f"TALeport/{__version__} (https://github.com/talonet73/TALeport; Windows desktop app)"
 MAX_RETRY_WAIT = 60.0
 
 

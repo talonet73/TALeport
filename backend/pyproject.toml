@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "taleport"
-version = "1.4.0"
+version = "1.5.0"
 description = "TALeport: local trend scanner and post drafting assistant for social media managers"
 requires-python = ">=3.12,<3.13"
 license = "MIT"
@@ -30,6 +30,8 @@ dependencies = [
     "python-multipart>=0.0.9",
     "imageio-ffmpeg>=0.5",
     "faster-whisper>=1.1",
+    "yt-dlp>=2026.10.26",  # research: audio of video links, YouTube search
+    "yt-dlp-ejs>=0.8",  # JavaScript for YouTube players (run by Deno/Node)
 ]
 
 [project.optional-dependencies]

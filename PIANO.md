@@ -278,3 +278,18 @@ Richiesta: cliccando Instagram avere il post già scritto, poter chiedere modifi
 - [x] `HandoffPanel`: riconosce il prompt incollato al posto della risposta; tasto «Scrivilo qui con Ollama» che rilancia la stessa richiesta con Ollama e lo imposta come AI predefinita
 - [x] Guida e testi IT/EN/ES; test: 7 backend (228) + 2 frontend (6); verificato dal vivo nel browser
 
+## Fase 15 — Ricerca su obiettivo (1.5.0)
+Richiesta: oltre alle tendenze, cercare materiale utile a un obiettivo descritto dall'utente (nozioni, regole, esperienze, esempi, non news); dai link video, trascrizione in background e riassunto come materiale per i post.
+
+- [x] Migrazione `0010_research.sql` (`research_projects`, `research_sources`); modulo `research/` (schemas tolleranti, `service.py`, `links.py`, `web_sources.py`, `docx.py`); API `/api/research/*`; evento `research.changed`
+- [x] Piano con l'AI (`research_plan`), modificabile; raccolta in background: Wikipedia (API MediaWiki, testo senza le sezioni finali), Reddit (RSS di ricerca per rilevanza, senza nomi utente), suggerimenti YouTube con yt-dlp (`ytsearch`, senza chiave)
+- [x] Link video: yt-dlp scarica solo l'audio (max 3 ore, niente playlist), FFmpeg → WAV, faster-whisper → trascrizione con [mm:ss], riassunto mirato all'obiettivo (`source_digest`) subito se l'AI predefinita non è la chat. YouTube: runtime JS Deno/Node/Bun dal PATH, altrimenti Deno scaricato una volta in `TALeport\tools`. Errori spiegati (privato, sito non supportato, troppo lungo…), riprova
+- [x] Documenti (PDF/Word/PowerPoint/testo), testo incollato, ricerca web con la chat (`research_web`, sempre «Apri nella chat»)
+- [x] Dossier (`research_dossier`): fonti lunghe riassunte prima per l'obiettivo, punti con numeri di fonte validati, conoscenza generale dell'AI facoltativa e senza fonti, lacune; punti eliminabili
+- [x] Contenuti: post tramite `/generator/long` col testo del dossier; Articolo (`research_article`) con lingua, lunghezza, tono da profilo; copia Markdown e Word in `exports`
+- [x] Pagina «Ricerca» in 4 passi, guida e testi IT/EN/ES; dipendenze `yt-dlp`, `yt-dlp-ejs`
+- [x] Prova reale sul portatile (gemma3, Node già presente): piano, 6 voci di Wikipedia, 8 suggerimenti YouTube, video di 5 minuti scaricato e trascritto in ~2 minuti, riassunto in italiano
+- [x] Corretti grazie alla prova reale: User-Agent con link al progetto (Wikimedia rispondeva 403); `transcribe.read_wav` passa a faster-whisper i campioni invece del file (PyAV 19 non accetta più `metadata_errors`: si rompeva anche l'Analisi video); query Reddit accorciate e secondo tentativo con `sort=new` (la ricerca RSS di Reddit risponde 404/429 in modo intermittente: fonte "quando risponde")
+- [x] Prova reale completa con gemma3: dossier (9 nozioni, 16 regole, esempi, errori, 3 citazioni) e articolo in ~19 minuti in tutto. Ollama ora aspetta fino a 15 minuti per risposta (`LOCAL_TIMEOUT_SECONDS`) e il dossier chiede al massimo 6 punti per sezione
+- [x] Test: 16 nuovi (244 backend); prova dal vivo nel browser con AI simulata
+

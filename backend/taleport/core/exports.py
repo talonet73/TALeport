@@ -16,8 +16,8 @@ from typing import Any
 from taleport.core.errors import AppError
 from taleport.core.paths import exports_dir
 
-EXTENSIONS = (".pdf", ".json", ".txt")
-_SAFE_NAME = re.compile(r"^[\w\-. ]+\.(pdf|json|txt)$")
+EXTENSIONS = (".pdf", ".json", ".txt", ".docx")
+_SAFE_NAME = re.compile(r"^[\w\-. ]+\.(pdf|json|txt|docx)$")
 RECENT_FILES = 20
 
 

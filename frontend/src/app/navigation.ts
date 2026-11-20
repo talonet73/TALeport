@@ -11,6 +11,7 @@ import {
   Settings,
   Sun,
   Tags,
+  Telescope,
   TrendingUp,
 } from 'lucide-react'
 
@@ -28,6 +29,7 @@ export const NAV_ITEMS: NavItem[] = [
   { path: '/trends', labelKey: 'nav.trends', icon: TrendingUp },
   { path: '/generator', labelKey: 'nav.generator', icon: PenLine },
   { path: '/long-content', labelKey: 'nav.longContent', icon: FileText },
+  { path: '/research', labelKey: 'nav.research', icon: Telescope },
   { path: '/video', labelKey: 'nav.video', icon: Clapperboard },
   { path: '/voices', labelKey: 'nav.voices', icon: MessageSquareQuote },
   { path: '/calendar', labelKey: 'nav.calendar', icon: CalendarDays },

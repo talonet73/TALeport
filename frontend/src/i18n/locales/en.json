@@ -12,7 +12,8 @@
     "topics": "Topics",
     "archive": "Archive",
     "reports": "PDF reports",
-    "settings": "Settings"
+    "settings": "Settings",
+    "research": "Research"
   },
   "sidebar": {
     "scanStatus": "Scan",
@@ -350,6 +351,34 @@
       "too_many": "At most {{max}} tone profiles.",
       "no_documents": "Upload at least one document.",
       "too_many_documents": "At most {{max}} documents at a time."
+    },
+    "research": {
+      "not_found": "Research not found.",
+      "source_not_found": "Source not found.",
+      "goal_short": "Describe the goal in at least {{min}} characters.",
+      "too_many": "You already have {{max}} researches: delete some.",
+      "no_plan": "Prepare the research plan first.",
+      "busy": "The search is already running.",
+      "too_many_sources": "At most {{max}} sources per research: remove some.",
+      "duplicate_source": "This source is already in the research.",
+      "no_videos": "Paste at least one link.",
+      "too_many_videos": "At most {{max}} links at a time.",
+      "not_a_link": "This does not look like a link: {{link}}",
+      "not_a_suggestion": "This source cannot be transcribed.",
+      "no_sources": "At least one ready source is needed.",
+      "no_dossier": "Build the dossier first.",
+      "no_article": "Write the article first.",
+      "video_private": "The video is private or needs a login: TALeport cannot download it.",
+      "video_unsupported": "This site is not supported for downloading.",
+      "video_unavailable": "The video is not available (removed or unreachable).",
+      "video_playlist": "It is a playlist: paste the links of single videos.",
+      "video_too_long": "The video is longer than {{hours}} hours.",
+      "video_download_failed": "Download failed. Try again later or check the link.",
+      "video_no_audio": "The video has no audio track.",
+      "video_no_speech": "No speech to transcribe in the video.",
+      "video_failed": "Video processing failed. Details are in the error log.",
+      "js_runtime_missing": "YouTube needs a component (Deno) that could not be downloaded. Check the connection and try again.",
+      "transcriber_missing": "Transcription is not available in this installation."
     }
   },
   "common": {
@@ -912,7 +941,11 @@
       "long_content": "From long content",
       "post_regeneration": "Regenerate post",
       "ask": "Ask",
-      "post_revision": "Edit post with AI"
+      "post_revision": "Edit post with AI",
+      "research_plan": "Research plan",
+      "research_digest": "Source summaries",
+      "research_dossier": "Research dossier",
+      "research_article": "Article"
     }
   },
   "reports": {
@@ -1248,6 +1281,17 @@
           "To report a problem, export the error log from Settings: it contains no API keys.",
           "The window stays empty or shows \"Unable to create data directory\": TALeport reopens in Chrome by itself within a few seconds and starts in Chrome from then on. You can also choose it in Settings → \"Open TALeport in\"."
         ]
+      },
+      "research": {
+        "title": "Research from a goal",
+        "items": [
+          "When you need notions, rules, experiences and examples rather than news (for an article or a series of posts), open \"Research\" in the menu and write your goal.",
+          "The AI prepares the plan: questions to cover, keywords, Wikipedia entries, Reddit and YouTube searches. Correct it as you like, then press \"Search the sources\".",
+          "Paste video links (YouTube, Instagram, TikTok…): TALeport downloads only the audio, transcribes it on your PC and extracts the useful points. It works in the background while you use the app. For YouTube it downloads a small component (Deno) the first time.",
+          "Add your own documents or a pasted text. With \"Web research with your chat\" Claude or ChatGPT search blogs and guides and give you back the sources with links.",
+          "\"Build the dossier\" organizes everything into notions, rules, examples, experiences, mistakes and quotes, each with its sources. Remove the points you don't need. The AI's general knowledge, if you turn it on, is marked apart.",
+          "From the dossier you create social posts or an article, to copy or download as Word."
+        ]
       }
     }
   },
@@ -1460,6 +1504,132 @@
       "manage": "Manage profiles",
       "topic": "The topic's tone",
       "reference": "Same as the uploaded documents"
+    }
+  },
+  "research": {
+    "subtitle": "Start from a goal (an article, a series of posts) and TALeport looks for evergreen notions, rules, experiences and examples: Wikipedia, Reddit, YouTube, the videos you choose, your documents and the web through your chat. Then it builds a dossier and, from it, your content.",
+    "goalLabel": "What is your goal?",
+    "goalPlaceholder": "E.g.: \"I need to write an article about what a social media strategist does: rules, common mistakes, real experiences and examples of successful strategies. No news.\"",
+    "languages": "Languages to search in",
+    "start": "Start the research",
+    "startHint": "The AI prepares the research plan right away: you can correct it before searching.",
+    "saved": "Saved research",
+    "sourcesCount_one": "{{count}} source",
+    "sourcesCount_other": "{{count}} sources",
+    "hasDossier": "dossier ready",
+    "deleteConfirm": "Delete the research with its sources and dossier? Posts already created stay in the Archive.",
+    "back": "All research",
+    "editGoal": "Edit the goal",
+    "plan": {
+      "title": "Research plan",
+      "hint": "What to look for your goal: questions, keywords, Wikipedia entries, Reddit and YouTube searches. You can add or remove items.",
+      "make": "Plan it with AI",
+      "again": "Plan again",
+      "questions": "Questions to cover",
+      "keywords": "Keywords",
+      "wikipedia": "Wikipedia entries",
+      "reddit": "Reddit searches (experiences)",
+      "youtube": "YouTube searches",
+      "add": "Add and press Enter",
+      "save": "Save the plan"
+    },
+    "sources": {
+      "title": "Sources",
+      "hint": "Gather the material: automatic search from the plan, videos to transcribe, your documents and web research with your chat.",
+      "collect": "Search the sources",
+      "collecting": "Searching…",
+      "needPlan": "Prepare the plan first.",
+      "web": "Web research with your chat",
+      "webHint": "Claude or ChatGPT search the open web (blogs, guides, case studies) and give you the sources with links",
+      "webExplain": "Paste the prompt into your chat with web search on, then paste its answer here: the sources found join the research.",
+      "videos": "Video links to transcribe",
+      "videosPlaceholder": "Paste one or more links (YouTube, Instagram, TikTok, Facebook…), one per line",
+      "transcribe": "Transcribe in the background",
+      "videosHint": "TALeport downloads only the audio, transcribes it on your PC (free, offline) and extracts the points useful for your goal. You can keep using the app.",
+      "yours": "Your material",
+      "document": "Upload documents",
+      "paste": "Paste a text",
+      "pasteTitle": "Title (optional)",
+      "pastePlaceholder": "Notes, an article, a transcript… (at least a few lines)",
+      "add": "Add",
+      "yoursHint": "PDF, Word, PowerPoint or text: course notes, articles, your experiences.",
+      "empty": "No sources yet: start the search or add videos and documents.",
+      "suggestions": "Videos suggested by YouTube",
+      "transcribeOne": "Transcribe",
+      "view": "View",
+      "open": "Open",
+      "retry": "Retry",
+      "summarized": "points extracted",
+      "digest": "Points useful for the goal",
+      "transcript": "Transcript",
+      "text": "Text"
+    },
+    "kinds": {
+      "wikipedia": "Wikipedia",
+      "reddit": "Reddit",
+      "youtube": "YouTube",
+      "video": "Transcribed video",
+      "document": "Document",
+      "text": "Pasted text",
+      "web": "Web (from your chat)"
+    },
+    "step": {
+      "queued": "Queued…",
+      "runtime": "Preparing the YouTube engine (first time only)…",
+      "download": "Downloading the audio…",
+      "transcribe": "Transcribing on your PC… (a few minutes for long videos)",
+      "summary": "Extracting the useful points…"
+    },
+    "dossier": {
+      "title": "Dossier",
+      "hint": "The AI organizes the material: notions, rules, examples, experiences, mistakes, quotes, each with its sources. Remove the points you don't need.",
+      "make_one": "Build the dossier from {{count}} source",
+      "make_other": "Build the dossier from {{count}} sources",
+      "again": "Rebuild the dossier",
+      "aiKnowledge": "Add the AI's general knowledge",
+      "aiKnowledgeNote": "These points do not come from the sources: check them before using them.",
+      "working": "Reading the sources and writing the dossier… with many sources it can take a few minutes.",
+      "waitVideos": "Some videos are still being processed: you can wait for them or build the dossier with what is there.",
+      "needSources": "At least one ready source is needed.",
+      "removeItem": "Remove from the dossier",
+      "gaps": "Not covered by the sources:",
+      "sourcesList_one": "{{count}} source used",
+      "sourcesList_other": "{{count}} sources used"
+    },
+    "sections": {
+      "notions": "Notions",
+      "rules": "Rules",
+      "examples": "Examples",
+      "experiences": "Experiences",
+      "mistakes": "Mistakes to avoid",
+      "quotes": "Quotes",
+      "ai_knowledge": "AI general knowledge"
+    },
+    "content": {
+      "title": "Content",
+      "hint": "From the dossier you create social posts or an article. Tone of voice, notes for the AI and \"Edit with AI\" all apply.",
+      "needDossier": "Build the dossier first.",
+      "posts": "Posts",
+      "article": "Article",
+      "count": "Posts per platform",
+      "makePosts_one": "Create {{count}} post",
+      "makePosts_other": "Create {{count}} posts",
+      "defaultTone": "Default tone (clear and authoritative)"
+    },
+    "article": {
+      "length": "Length",
+      "lengths": {
+        "short": "Short (about 600 words)",
+        "medium": "Medium (about 1000 words)",
+        "long": "Long (about 1600 words)"
+      },
+      "make": "Write the article",
+      "again": "Rewrite the article",
+      "copy": "Copy (Markdown)",
+      "word": "Download as Word",
+      "copied": "Article copied: paste it into your blog or LinkedIn.",
+      "saved": "Saved and opened: {{name}}",
+      "language": "Article language"
     }
   }
 }

@@ -11,10 +11,13 @@ export function VoiceSelect({
   value,
   onChange,
   extra,
+  defaultLabel,
 }: {
   value: string
   onChange: (value: string) => void
   extra?: { value: string; label: string }
+  /** Label of the "no profile" choice (default: the topic's voice). */
+  defaultLabel?: string
 }) {
   const { t } = useTranslation()
   const { data: voices = [] } = useVoices()
@@ -28,7 +31,7 @@ export function VoiceSelect({
       </span>
       <select value={value} onChange={(e) => onChange(e.target.value)} className={fieldClass}>
         {extra && <option value={extra.value}>{extra.label}</option>}
-        <option value="">{t('voices.select.topic')}</option>
+        <option value="">{defaultLabel ?? t('voices.select.topic')}</option>
         {voices.map((v) => (
           <option key={v.id} value={String(v.id)}>
             {v.name}

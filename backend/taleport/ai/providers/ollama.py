@@ -43,6 +43,11 @@ def list_models(base_url: str, timeout: float = 3.0) -> list[str]:
     return [m["name"] for m in response.json().get("models", []) if m.get("name")]
 
 
+# Local and free, but slow on a laptop CPU (about 7-8 tokens/s with gemma3): a research
+# dossier can take 5 minutes, so the wait is longer than for paid APIs.
+LOCAL_TIMEOUT_SECONDS = max(TIMEOUT_SECONDS * 2, 900.0)
+
+
 class OllamaProvider:
     name = "ollama"
     paid = False
@@ -54,7 +59,7 @@ class OllamaProvider:
 
     def _post(self, body: dict) -> httpx.Response:
         try:
-            return httpx.post(f"{self._url}/api/chat", json=body, timeout=TIMEOUT_SECONDS * 2)
+            return httpx.post(f"{self._url}/api/chat", json=body, timeout=LOCAL_TIMEOUT_SECONDS)
         except httpx.TimeoutException as exc:
             raise ProviderError("ai.timeout") from exc
         except httpx.HTTPError as exc:

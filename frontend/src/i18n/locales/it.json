@@ -12,7 +12,8 @@
     "topics": "Argomenti",
     "archive": "Archivio",
     "reports": "Report PDF",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "research": "Ricerca"
   },
   "sidebar": {
     "scanStatus": "Scansione",
@@ -350,6 +351,34 @@
       "too_many": "Massimo {{max}} profili di tono.",
       "no_documents": "Carica almeno un documento.",
       "too_many_documents": "Massimo {{max}} documenti alla volta."
+    },
+    "research": {
+      "not_found": "Ricerca non trovata.",
+      "source_not_found": "Fonte non trovata.",
+      "goal_short": "Descrivi l'obiettivo con almeno {{min}} caratteri.",
+      "too_many": "Hai già {{max}} ricerche: eliminane qualcuna.",
+      "no_plan": "Prima prepara il piano di ricerca.",
+      "busy": "La ricerca è già in corso.",
+      "too_many_sources": "Massimo {{max}} fonti per ricerca: togline qualcuna.",
+      "duplicate_source": "Questa fonte è già nella ricerca.",
+      "no_videos": "Incolla almeno un link.",
+      "too_many_videos": "Al massimo {{max}} link alla volta.",
+      "not_a_link": "Questo non sembra un link: {{link}}",
+      "not_a_suggestion": "Questa fonte non si può trascrivere.",
+      "no_sources": "Serve almeno una fonte pronta.",
+      "no_dossier": "Crea prima il dossier.",
+      "no_article": "Scrivi prima l'articolo.",
+      "video_private": "Il video è privato o richiede l'accesso: TALeport non può scaricarlo.",
+      "video_unsupported": "Questo sito non è supportato per il download.",
+      "video_unavailable": "Il video non è disponibile (rimosso o non raggiungibile).",
+      "video_playlist": "È una playlist: incolla il link dei singoli video.",
+      "video_too_long": "Il video è più lungo di {{hours}} ore.",
+      "video_download_failed": "Download non riuscito. Riprova più tardi o controlla il link.",
+      "video_no_audio": "Nel video non c'è una traccia audio.",
+      "video_no_speech": "Nel video non si sente parlato da trascrivere.",
+      "video_failed": "Lavorazione del video non riuscita. I dettagli sono nel registro errori.",
+      "js_runtime_missing": "Per YouTube serve un componente (Deno) che non è stato possibile scaricare. Controlla la connessione e riprova.",
+      "transcriber_missing": "La trascrizione non è disponibile in questa installazione."
     }
   },
   "common": {
@@ -912,7 +941,11 @@
       "long_content": "Da contenuto lungo",
       "post_regeneration": "Rigenera post",
       "ask": "Chiedi",
-      "post_revision": "Modifica post con l'AI"
+      "post_revision": "Modifica post con l'AI",
+      "research_plan": "Piano di ricerca",
+      "research_digest": "Riassunto fonti",
+      "research_dossier": "Dossier di ricerca",
+      "research_article": "Articolo"
     }
   },
   "reports": {
@@ -1248,6 +1281,17 @@
           "Per una segnalazione esporta il registro errori dalle Impostazioni: non contiene chiavi API.",
           "La finestra resta vuota o compare «Impossibile creare la directory dei dati»: TALeport si riapre da solo in Chrome entro pochi secondi e da lì in poi parte in Chrome. Puoi sceglierlo anche tu in Impostazioni → «Apri TALeport in»."
         ]
+      },
+      "research": {
+        "title": "Ricerca su obiettivo",
+        "items": [
+          "Quando non ti servono le notizie ma nozioni, regole, esperienze ed esempi (per un articolo o una serie di post), apri «Ricerca» nel menu e scrivi il tuo obiettivo.",
+          "L'AI prepara il piano: domande da coprire, parole chiave, voci di Wikipedia, ricerche su Reddit e YouTube. Correggilo come vuoi, poi premi «Cerca nelle fonti».",
+          "Incolla i link dei video (YouTube, Instagram, TikTok…): TALeport scarica solo l'audio, lo trascrive sul tuo PC e ne ricava i punti utili. Lavora in background, mentre usi l'app. Per YouTube, la prima volta scarica un piccolo componente (Deno).",
+          "Aggiungi documenti tuoi o un testo incollato. Con «Ricerca web con la tua chat» Claude o ChatGPT cercano su blog e guide e ti restituiscono le fonti con i link.",
+          "«Crea il dossier» mette in ordine tutto in nozioni, regole, esempi, esperienze, errori e citazioni, ognuno con le sue fonti. Togli i punti che non ti servono. La conoscenza generale dell'AI, se la attivi, è segnata a parte.",
+          "Dal dossier crei post per i social o un articolo, da copiare o scaricare in Word."
+        ]
       }
     }
   },
@@ -1460,6 +1504,132 @@
       "manage": "Gestisci profili",
       "topic": "Tono dell'argomento",
       "reference": "Lo stesso dei documenti caricati"
+    }
+  },
+  "research": {
+    "subtitle": "Parti da un obiettivo (un articolo, una serie di post) e TALeport cerca nozioni, regole, esperienze ed esempi che non scadono: Wikipedia, Reddit, YouTube, i video che indichi tu, i tuoi documenti e il web con la tua chat. Poi crea il dossier e da lì i contenuti.",
+    "goalLabel": "Qual è il tuo obiettivo?",
+    "goalPlaceholder": "Es.: «Devo scrivere un articolo su cosa fa un social media strategist: regole, errori comuni, esperienze reali ed esempi di strategie riuscite. Niente news.»",
+    "languages": "Lingue in cui cercare",
+    "start": "Inizia la ricerca",
+    "startHint": "L'AI prepara subito il piano di ricerca: lo potrai correggere prima di cercare.",
+    "saved": "Ricerche salvate",
+    "sourcesCount_one": "{{count}} fonte",
+    "sourcesCount_other": "{{count}} fonti",
+    "hasDossier": "dossier pronto",
+    "deleteConfirm": "Eliminare la ricerca con le sue fonti e il dossier? I post già creati restano nell'Archivio.",
+    "back": "Tutte le ricerche",
+    "editGoal": "Modifica l'obiettivo",
+    "plan": {
+      "title": "Piano di ricerca",
+      "hint": "Cosa cercare per il tuo obiettivo: domande, parole chiave, voci di Wikipedia, ricerche su Reddit e YouTube. Puoi aggiungere o togliere voci.",
+      "make": "Prepara il piano con l'AI",
+      "again": "Rifai il piano",
+      "questions": "Domande da coprire",
+      "keywords": "Parole chiave",
+      "wikipedia": "Voci di Wikipedia",
+      "reddit": "Ricerche su Reddit (esperienze)",
+      "youtube": "Ricerche su YouTube",
+      "add": "Aggiungi e premi Invio",
+      "save": "Salva il piano"
+    },
+    "sources": {
+      "title": "Fonti",
+      "hint": "Raccogli il materiale: ricerca automatica dal piano, video da trascrivere, documenti tuoi e ricerca web con la tua chat.",
+      "collect": "Cerca nelle fonti",
+      "collecting": "Ricerca in corso…",
+      "needPlan": "Prima prepara il piano.",
+      "web": "Ricerca web con la tua chat",
+      "webHint": "Claude o ChatGPT cercano sul web aperto (blog, guide, casi studio) e ti danno le fonti con i link",
+      "webExplain": "Incolla il prompt nella tua chat con la ricerca web attiva, poi incolla qui la sua risposta: le fonti trovate entrano nella ricerca.",
+      "videos": "Link video da trascrivere",
+      "videosPlaceholder": "Incolla uno o più link (YouTube, Instagram, TikTok, Facebook…), uno per riga",
+      "transcribe": "Trascrivi in background",
+      "videosHint": "TALeport scarica solo l'audio, lo trascrive sul tuo PC (gratis, offline) e ne ricava i punti utili al tuo obiettivo. Puoi continuare a usare l'app.",
+      "yours": "Materiale tuo",
+      "document": "Carica documenti",
+      "paste": "Incolla un testo",
+      "pasteTitle": "Titolo (facoltativo)",
+      "pastePlaceholder": "Appunti, un articolo, una trascrizione… (almeno qualche riga)",
+      "add": "Aggiungi",
+      "yoursHint": "PDF, Word, PowerPoint o testo: appunti di corsi, articoli, tue esperienze.",
+      "empty": "Ancora nessuna fonte: avvia la ricerca o aggiungi video e documenti.",
+      "suggestions": "Video suggeriti da YouTube",
+      "transcribeOne": "Trascrivi",
+      "view": "Vedi",
+      "open": "Apri",
+      "retry": "Riprova",
+      "summarized": "punti estratti",
+      "digest": "Punti utili all'obiettivo",
+      "transcript": "Trascrizione",
+      "text": "Testo"
+    },
+    "kinds": {
+      "wikipedia": "Wikipedia",
+      "reddit": "Reddit",
+      "youtube": "YouTube",
+      "video": "Video trascritto",
+      "document": "Documento",
+      "text": "Testo incollato",
+      "web": "Web (dalla tua chat)"
+    },
+    "step": {
+      "queued": "In coda…",
+      "runtime": "Preparo il motore per YouTube (solo la prima volta)…",
+      "download": "Scarico l'audio…",
+      "transcribe": "Trascrivo sul PC… (qualche minuto per i video lunghi)",
+      "summary": "Estraggo i punti utili…"
+    },
+    "dossier": {
+      "title": "Dossier",
+      "hint": "L'AI mette in ordine il materiale: nozioni, regole, esempi, esperienze, errori, citazioni, ognuno con le sue fonti. Togli i punti che non ti servono.",
+      "make_one": "Crea il dossier da {{count}} fonte",
+      "make_other": "Crea il dossier da {{count}} fonti",
+      "again": "Rifai il dossier",
+      "aiKnowledge": "Aggiungi la conoscenza generale dell'AI",
+      "aiKnowledgeNote": "Questi punti non vengono dalle fonti: verificali prima di usarli.",
+      "working": "Leggo le fonti e scrivo il dossier… con molte fonti può volerci qualche minuto.",
+      "waitVideos": "Alcuni video sono ancora in lavorazione: puoi aspettarli o creare il dossier con quello che c'è.",
+      "needSources": "Serve almeno una fonte pronta.",
+      "removeItem": "Togli dal dossier",
+      "gaps": "Non coperto dalle fonti:",
+      "sourcesList_one": "{{count}} fonte usata",
+      "sourcesList_other": "{{count}} fonti usate"
+    },
+    "sections": {
+      "notions": "Nozioni",
+      "rules": "Regole",
+      "examples": "Esempi",
+      "experiences": "Esperienze",
+      "mistakes": "Errori da evitare",
+      "quotes": "Citazioni",
+      "ai_knowledge": "Conoscenza generale dell'AI"
+    },
+    "content": {
+      "title": "Contenuti",
+      "hint": "Dal dossier crei post per i social o un articolo. Valgono tono di voce, indicazioni per l'AI e «Modifica con l'AI».",
+      "needDossier": "Crea prima il dossier.",
+      "posts": "Post",
+      "article": "Articolo",
+      "count": "Post per social",
+      "makePosts_one": "Crea {{count}} post",
+      "makePosts_other": "Crea {{count}} post",
+      "defaultTone": "Tono predefinito (chiaro e autorevole)"
+    },
+    "article": {
+      "length": "Lunghezza",
+      "lengths": {
+        "short": "Breve (circa 600 parole)",
+        "medium": "Media (circa 1000 parole)",
+        "long": "Lunga (circa 1600 parole)"
+      },
+      "make": "Scrivi l'articolo",
+      "again": "Riscrivi l'articolo",
+      "copy": "Copia (Markdown)",
+      "word": "Scarica in Word",
+      "copied": "Articolo copiato: incollalo nel tuo blog o su LinkedIn.",
+      "saved": "Salvato e aperto: {{name}}",
+      "language": "Lingua dell'articolo"
     }
   }
 }

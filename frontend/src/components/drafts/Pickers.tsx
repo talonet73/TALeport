@@ -40,15 +40,19 @@ export function LanguagePicker({
   value,
   onChange,
   single,
+  label,
 }: {
   value: Language[]
   onChange: (v: Language[]) => void
   single?: boolean
+  label?: string
 }) {
   const { t } = useTranslation()
   return (
     <fieldset>
-      <legend className="mb-2 font-medium text-ink">{single ? t('generator.language') : t('generator.languages')}</legend>
+      <legend className="mb-2 font-medium text-ink">
+        {label ?? (single ? t('generator.language') : t('generator.languages'))}
+      </legend>
       <div className="flex flex-wrap gap-2">
         {LANGUAGES.map((lang) => (
           <Chip

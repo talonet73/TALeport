@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.5.0 — 2026-11-20
+
+Ricerca su obiettivo · Research from a goal
+
+**Italiano**
+
+- Nuova pagina «Ricerca»: scrivi il tuo obiettivo (per esempio un articolo su un tema) e TALeport cerca materiale che non scade (nozioni, regole, esperienze, esempi), non notizie.
+- L'AI prepara il piano di ricerca (domande, parole chiave, voci di Wikipedia, ricerche su Reddit e YouTube) e lo puoi correggere. «Cerca nelle fonti» legge Wikipedia, le discussioni di Reddit e propone video di YouTube, senza chiavi API.
+- Link video (YouTube, Instagram, TikTok, Facebook…): TALeport scarica solo l'audio, lo trascrive sul tuo PC e ne ricava i punti utili al tuo obiettivo, con i minuti delle frasi. Lavora in background. Per YouTube scarica una volta il componente gratuito Deno, se sul PC non c'è già.
+- Anche documenti tuoi, testi incollati e la ricerca web fatta dalla tua chat (Claude o ChatGPT) con le fonti e i link.
+- Dossier con nozioni, regole, esempi, esperienze, errori e citazioni, ognuno con le sue fonti; la conoscenza generale dell'AI, se la attivi, è segnata a parte. Puoi togliere i punti che non servono.
+- Dal dossier: post per i social (con tono di voce, indicazioni e «Modifica con l'AI») oppure un articolo, da copiare in Markdown o scaricare in Word.
+- Risolto: la trascrizione dei video (anche nell'Analisi video) non partiva con la versione più recente del decoder audio; ora l'audio viene letto direttamente. Wikipedia rifiutava le richieste senza un contatto: TALeport ora si presenta con il link del progetto.
+
+**English**
+
+- New "Research" page: write your goal (e.g. an article on a subject) and TALeport looks for evergreen material (notions, rules, experiences, examples), not news.
+- The AI prepares the research plan (questions, keywords, Wikipedia entries, Reddit and YouTube searches) and you can correct it. "Search the sources" reads Wikipedia, Reddit discussions and suggests YouTube videos, with no API keys.
+- Video links (YouTube, Instagram, TikTok, Facebook…): TALeport downloads only the audio, transcribes it on your PC and extracts the points useful for your goal, with timestamps. It works in the background. For YouTube it downloads the free Deno component once, if the PC does not have it.
+- Also your documents, pasted texts and web research done by your chat (Claude or ChatGPT) with sources and links.
+- A dossier with notions, rules, examples, experiences, mistakes and quotes, each with its sources; the AI's general knowledge, if you turn it on, is marked apart. You can remove the points you don't need.
+- From the dossier: social posts (with tone of voice, notes and "Edit with AI") or an article, to copy as Markdown or download as Word.
+- Fixed: video transcription (also in Video analysis) failed with the latest audio decoder; the audio is now read directly. Wikipedia refused requests without a contact: TALeport now identifies itself with the project link.
+
 ## 1.4.0 — 2026-11-19
 
 Modifica con l'AI e immagini per Gemini · Edit with AI and images for Gemini

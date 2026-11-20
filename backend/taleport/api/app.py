@@ -27,6 +27,7 @@ from taleport.api import (
     generator_routes,
     insights_routes,
     reports_routes,
+    research_routes,
     routes,
     scan_routes,
     sse,
@@ -113,6 +114,7 @@ def create_app(ctx: AppContext, static_dir: Path | None = None) -> FastAPI:
     app.include_router(system_routes.router, prefix="/api")
     app.include_router(video_routes.router, prefix="/api")
     app.include_router(voices_routes.router, prefix="/api")
+    app.include_router(research_routes.router, prefix="/api")
     app.include_router(sse.router, prefix="/api")
 
     _mount_frontend(app, static_dir or frontend_dist())

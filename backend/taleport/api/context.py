@@ -38,6 +38,7 @@ from taleport.generator.service import GeneratorService
 from taleport.notifications.service import NotificationService
 from taleport.planner.service import PlannerService
 from taleport.reports.service import ReportService
+from taleport.research.service import ResearchService
 from taleport.results.service import ResultsService
 from taleport.scan.items import ItemRepository
 from taleport.scan.service import ScanService
@@ -73,6 +74,7 @@ class AppContext:
     updates: UpdateService
     videos: VideoService
     voices: VoiceService
+    research: ResearchService
     token: str
     bus: EventBus
     version: str = __version__
@@ -187,6 +189,7 @@ def build_context(
         backup=BackupService(db, settings, topics, reports),
         updates=UpdateService(db, settings, http, notifications),
         voices=voices,
+        research=ResearchService(db, ai, bus, start_worker=start_video_worker),
         videos=VideoService(
             db,
             ai,

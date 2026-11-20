@@ -17,6 +17,7 @@ import { TopicEditor } from '../pages/topics/TopicEditor'
 import { TopicsPage } from '../pages/topics/TopicsPage'
 import { VideoProjectPage } from '../pages/video/VideoProjectPage'
 import { VideoProjectsPage } from '../pages/video/VideoProjectsPage'
+import { ResearchPage } from '../pages/research/ResearchPage'
 import { VoicesPage } from '../pages/voices/VoicesPage'
 import { Layout } from './Layout'
 import { NAV_ITEMS } from './navigation'
@@ -41,6 +42,8 @@ export function App() {
         <Route path="/long-content" element={<LongContentPage />} />
         <Route path="/video" element={<VideoProjectsPage />} />
         <Route path="/voices" element={<VoicesPage />} />
+        <Route path="/research" element={<ResearchPage />} />
+        <Route path="/research/:id" element={<ResearchPage />} />
         <Route path="/video/:id" element={<VideoProjectPage />} />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/archive" element={<ArchivePage />} />

@@ -34,6 +34,15 @@ How TALeport works, in short.
 - “Analyze” writes strengths, weaknesses, what competitors do and what to change video by video; “PDF for the client” creates the report to send.
 - No account access and no scraping: only the files the client sends you are used. “Message for the client” gives you a ready text to ask for them.
 
+## Research from a goal
+
+- When you need notions, rules, experiences and examples rather than news (for an article or a series of posts), open "Research" in the menu and write your goal.
+- The AI prepares the plan: questions to cover, keywords, Wikipedia entries, Reddit and YouTube searches. Correct it as you like, then press "Search the sources".
+- Paste video links (YouTube, Instagram, TikTok…): TALeport downloads only the audio, transcribes it on your PC and extracts the useful points. It works in the background while you use the app. For YouTube it downloads a small component (Deno) the first time.
+- Add your own documents or a pasted text. With "Web research with your chat" Claude or ChatGPT search blogs and guides and give you back the sources with links.
+- "Build the dossier" organizes everything into notions, rules, examples, experiences, mistakes and quotes, each with its sources. Remove the points you don't need. The AI's general knowledge, if you turn it on, is marked apart.
+- From the dossier you create social posts or an article, to copy or download as Word.
+
 ## Posts from a reference and tone of voice
 
 - In the Generator choose “A reference” and upload up to 5 documents (Word, PDF, PowerPoint or text): the AI finds the topics and writes the posts in the same tone of voice as the documents.

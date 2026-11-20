@@ -74,6 +74,7 @@ export interface AiEnvelope<T> {
   result?: T
   updated?: number
   item_id?: number
+  project?: unknown // research
   // generator
   batch_id?: string
   drafts?: Draft[]

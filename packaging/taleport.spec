@@ -51,6 +51,7 @@ datas = [
     *collect_data_files("imageio_ffmpeg"),
     *collect_data_files("faster_whisper"),
     *collect_data_files("pptx"),  # python-pptx: reading PowerPoint references
+    *collect_data_files("yt_dlp_ejs"),  # YouTube player scripts for yt-dlp
     *copy_metadata("imageio_ffmpeg"),
     *copy_metadata("faster_whisper"),
     *copy_metadata("ctranslate2"),
@@ -68,6 +69,7 @@ hiddenimports = [
     "pystray._win32",
     "webview.platforms.edgechromium",
     *collect_submodules("faster_whisper"),
+    *collect_submodules("yt_dlp_ejs"),
     "multipart",
     "python_multipart",
 ]

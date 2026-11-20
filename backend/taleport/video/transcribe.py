@@ -76,11 +76,30 @@ def _load():
     return _model
 
 
+def read_wav(wav: Path):
+    """The 16 kHz mono WAV made by FFmpeg as float32 samples. faster-whisper is given the
+    samples, not the file: its own decoder (PyAV) changed its API in av 15+ and fails."""
+    import wave
+
+    import numpy as np
+
+    with wave.open(str(wav), "rb") as reader:
+        if reader.getsampwidth() != 2:
+            raise ValueError("expected 16-bit PCM")
+        channels = reader.getnchannels()
+        samples = np.frombuffer(reader.readframes(reader.getnframes()), dtype=np.int16)
+    audio = samples.astype(np.float32) / 32768.0
+    if channels > 1:
+        audio = audio.reshape(-1, channels).mean(axis=1)
+    return audio
+
+
 def transcribe(wav: Path) -> Transcript:
     """Raises on any failure: the caller records it and continues without speech data."""
+    audio = read_wav(wav)
     with _lock:  # one transcription at a time: the model is big and CPU-bound
         model = _load()
-        segments, info = model.transcribe(str(wav), beam_size=1, vad_filter=False)
+        segments, info = model.transcribe(audio, beam_size=1, vad_filter=False)
         found = [
             Segment(round(s.start, 2), round(s.end, 2), s.text.strip())
             for s in segments

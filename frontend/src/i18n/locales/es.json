@@ -12,7 +12,8 @@
     "topics": "Temas",
     "archive": "Archivo",
     "reports": "Informes PDF",
-    "settings": "Ajustes"
+    "settings": "Ajustes",
+    "research": "Investigación"
   },
   "sidebar": {
     "scanStatus": "Escaneo",
@@ -350,6 +351,34 @@
       "too_many": "Máximo {{max}} perfiles de tono.",
       "no_documents": "Sube al menos un documento.",
       "too_many_documents": "Máximo {{max}} documentos a la vez."
+    },
+    "research": {
+      "not_found": "Investigación no encontrada.",
+      "source_not_found": "Fuente no encontrada.",
+      "goal_short": "Describe el objetivo con al menos {{min}} caracteres.",
+      "too_many": "Ya tienes {{max}} investigaciones: elimina alguna.",
+      "no_plan": "Primero prepara el plan de investigación.",
+      "busy": "La búsqueda ya está en marcha.",
+      "too_many_sources": "Máximo {{max}} fuentes por investigación: quita alguna.",
+      "duplicate_source": "Esta fuente ya está en la investigación.",
+      "no_videos": "Pega al menos un enlace.",
+      "too_many_videos": "Como máximo {{max}} enlaces a la vez.",
+      "not_a_link": "Esto no parece un enlace: {{link}}",
+      "not_a_suggestion": "Esta fuente no se puede transcribir.",
+      "no_sources": "Hace falta al menos una fuente lista.",
+      "no_dossier": "Primero crea el dossier.",
+      "no_article": "Primero escribe el artículo.",
+      "video_private": "El vídeo es privado o requiere iniciar sesión: TALeport no puede descargarlo.",
+      "video_unsupported": "Este sitio no es compatible con la descarga.",
+      "video_unavailable": "El vídeo no está disponible (eliminado o inaccesible).",
+      "video_playlist": "Es una lista: pega los enlaces de los vídeos sueltos.",
+      "video_too_long": "El vídeo dura más de {{hours}} horas.",
+      "video_download_failed": "La descarga ha fallado. Inténtalo más tarde o revisa el enlace.",
+      "video_no_audio": "El vídeo no tiene pista de audio.",
+      "video_no_speech": "En el vídeo no hay voz que transcribir.",
+      "video_failed": "No se pudo procesar el vídeo. Los detalles están en el registro de errores.",
+      "js_runtime_missing": "Para YouTube hace falta un componente (Deno) que no se pudo descargar. Revisa la conexión e inténtalo de nuevo.",
+      "transcriber_missing": "La transcripción no está disponible en esta instalación."
     }
   },
   "common": {
@@ -912,7 +941,11 @@
       "long_content": "Desde contenido largo",
       "post_regeneration": "Regenerar post",
       "ask": "Preguntar",
-      "post_revision": "Editar post con la IA"
+      "post_revision": "Editar post con la IA",
+      "research_plan": "Plan de investigación",
+      "research_digest": "Resumen de fuentes",
+      "research_dossier": "Dossier de investigación",
+      "research_article": "Artículo"
     }
   },
   "reports": {
@@ -1248,6 +1281,17 @@
           "Para avisar de un problema exporta el registro de errores desde los Ajustes: no contiene claves API.",
           "La ventana se queda vacía o aparece «No se puede crear el directorio de datos»: TALeport se vuelve a abrir solo en Chrome en pocos segundos y desde entonces arranca en Chrome. También puedes elegirlo en Ajustes → «Abrir TALeport en»."
         ]
+      },
+      "research": {
+        "title": "Investigación desde un objetivo",
+        "items": [
+          "Cuando no necesitas noticias sino nociones, reglas, experiencias y ejemplos (para un artículo o una serie de posts), abre «Investigación» en el menú y escribe tu objetivo.",
+          "La IA prepara el plan: preguntas que cubrir, palabras clave, artículos de Wikipedia, búsquedas en Reddit y YouTube. Corrígelo como quieras y pulsa «Buscar en las fuentes».",
+          "Pega enlaces de vídeo (YouTube, Instagram, TikTok…): TALeport descarga solo el audio, lo transcribe en tu PC y saca los puntos útiles. Trabaja en segundo plano mientras usas la app. Para YouTube, la primera vez descarga un pequeño componente (Deno).",
+          "Añade tus documentos o un texto pegado. Con «Búsqueda web con tu chat» Claude o ChatGPT buscan en blogs y guías y te devuelven las fuentes con enlaces.",
+          "«Crear el dossier» lo ordena todo en nociones, reglas, ejemplos, experiencias, errores y citas, cada uno con sus fuentes. Quita los puntos que no necesites. El conocimiento general de la IA, si lo activas, aparece aparte.",
+          "Desde el dossier creas posts para redes o un artículo, para copiar o descargar en Word."
+        ]
       }
     }
   },
@@ -1460,6 +1504,132 @@
       "manage": "Gestionar perfiles",
       "topic": "Tono del tema",
       "reference": "El mismo de los documentos subidos"
+    }
+  },
+  "research": {
+    "subtitle": "Parte de un objetivo (un artículo, una serie de posts) y TALeport busca nociones, reglas, experiencias y ejemplos que no caducan: Wikipedia, Reddit, YouTube, los vídeos que indiques, tus documentos y la web con tu chat. Luego crea el dossier y, a partir de él, los contenidos.",
+    "goalLabel": "¿Cuál es tu objetivo?",
+    "goalPlaceholder": "Ej.: «Tengo que escribir un artículo sobre qué hace un social media strategist: reglas, errores comunes, experiencias reales y ejemplos de estrategias exitosas. Sin noticias.»",
+    "languages": "Idiomas en los que buscar",
+    "start": "Empezar la investigación",
+    "startHint": "La IA prepara enseguida el plan de investigación: podrás corregirlo antes de buscar.",
+    "saved": "Investigaciones guardadas",
+    "sourcesCount_one": "{{count}} fuente",
+    "sourcesCount_other": "{{count}} fuentes",
+    "hasDossier": "dossier listo",
+    "deleteConfirm": "¿Eliminar la investigación con sus fuentes y el dossier? Los posts ya creados siguen en el Archivo.",
+    "back": "Todas las investigaciones",
+    "editGoal": "Editar el objetivo",
+    "plan": {
+      "title": "Plan de investigación",
+      "hint": "Qué buscar para tu objetivo: preguntas, palabras clave, artículos de Wikipedia, búsquedas en Reddit y YouTube. Puedes añadir o quitar elementos.",
+      "make": "Preparar el plan con la IA",
+      "again": "Rehacer el plan",
+      "questions": "Preguntas que cubrir",
+      "keywords": "Palabras clave",
+      "wikipedia": "Artículos de Wikipedia",
+      "reddit": "Búsquedas en Reddit (experiencias)",
+      "youtube": "Búsquedas en YouTube",
+      "add": "Añade y pulsa Intro",
+      "save": "Guardar el plan"
+    },
+    "sources": {
+      "title": "Fuentes",
+      "hint": "Reúne el material: búsqueda automática desde el plan, vídeos que transcribir, tus documentos y búsqueda web con tu chat.",
+      "collect": "Buscar en las fuentes",
+      "collecting": "Buscando…",
+      "needPlan": "Primero prepara el plan.",
+      "web": "Búsqueda web con tu chat",
+      "webHint": "Claude o ChatGPT buscan en la web abierta (blogs, guías, casos de estudio) y te dan las fuentes con enlaces",
+      "webExplain": "Pega el prompt en tu chat con la búsqueda web activa y luego pega aquí su respuesta: las fuentes encontradas entran en la investigación.",
+      "videos": "Enlaces de vídeo que transcribir",
+      "videosPlaceholder": "Pega uno o más enlaces (YouTube, Instagram, TikTok, Facebook…), uno por línea",
+      "transcribe": "Transcribir en segundo plano",
+      "videosHint": "TALeport descarga solo el audio, lo transcribe en tu PC (gratis, sin conexión) y saca los puntos útiles para tu objetivo. Puedes seguir usando la app.",
+      "yours": "Tu material",
+      "document": "Subir documentos",
+      "paste": "Pegar un texto",
+      "pasteTitle": "Título (opcional)",
+      "pastePlaceholder": "Apuntes, un artículo, una transcripción… (al menos unas líneas)",
+      "add": "Añadir",
+      "yoursHint": "PDF, Word, PowerPoint o texto: apuntes de cursos, artículos, tus experiencias.",
+      "empty": "Aún no hay fuentes: inicia la búsqueda o añade vídeos y documentos.",
+      "suggestions": "Vídeos sugeridos por YouTube",
+      "transcribeOne": "Transcribir",
+      "view": "Ver",
+      "open": "Abrir",
+      "retry": "Reintentar",
+      "summarized": "puntos extraídos",
+      "digest": "Puntos útiles para el objetivo",
+      "transcript": "Transcripción",
+      "text": "Texto"
+    },
+    "kinds": {
+      "wikipedia": "Wikipedia",
+      "reddit": "Reddit",
+      "youtube": "YouTube",
+      "video": "Vídeo transcrito",
+      "document": "Documento",
+      "text": "Texto pegado",
+      "web": "Web (desde tu chat)"
+    },
+    "step": {
+      "queued": "En cola…",
+      "runtime": "Preparando el motor para YouTube (solo la primera vez)…",
+      "download": "Descargando el audio…",
+      "transcribe": "Transcribiendo en tu PC… (unos minutos para vídeos largos)",
+      "summary": "Sacando los puntos útiles…"
+    },
+    "dossier": {
+      "title": "Dossier",
+      "hint": "La IA ordena el material: nociones, reglas, ejemplos, experiencias, errores, citas, cada uno con sus fuentes. Quita los puntos que no necesites.",
+      "make_one": "Crear el dossier con {{count}} fuente",
+      "make_other": "Crear el dossier con {{count}} fuentes",
+      "again": "Rehacer el dossier",
+      "aiKnowledge": "Añadir el conocimiento general de la IA",
+      "aiKnowledgeNote": "Estos puntos no vienen de las fuentes: compruébalos antes de usarlos.",
+      "working": "Leyendo las fuentes y escribiendo el dossier… con muchas fuentes puede tardar unos minutos.",
+      "waitVideos": "Algunos vídeos siguen en proceso: puedes esperarlos o crear el dossier con lo que hay.",
+      "needSources": "Hace falta al menos una fuente lista.",
+      "removeItem": "Quitar del dossier",
+      "gaps": "No cubierto por las fuentes:",
+      "sourcesList_one": "{{count}} fuente usada",
+      "sourcesList_other": "{{count}} fuentes usadas"
+    },
+    "sections": {
+      "notions": "Nociones",
+      "rules": "Reglas",
+      "examples": "Ejemplos",
+      "experiences": "Experiencias",
+      "mistakes": "Errores que evitar",
+      "quotes": "Citas",
+      "ai_knowledge": "Conocimiento general de la IA"
+    },
+    "content": {
+      "title": "Contenidos",
+      "hint": "Desde el dossier creas posts para redes o un artículo. Se aplican el tono de voz, las indicaciones para la IA y «Editar con la IA».",
+      "needDossier": "Primero crea el dossier.",
+      "posts": "Posts",
+      "article": "Artículo",
+      "count": "Posts por red",
+      "makePosts_one": "Crear {{count}} post",
+      "makePosts_other": "Crear {{count}} posts",
+      "defaultTone": "Tono predeterminado (claro y con autoridad)"
+    },
+    "article": {
+      "length": "Extensión",
+      "lengths": {
+        "short": "Breve (unas 600 palabras)",
+        "medium": "Media (unas 1000 palabras)",
+        "long": "Larga (unas 1600 palabras)"
+      },
+      "make": "Escribir el artículo",
+      "again": "Reescribir el artículo",
+      "copy": "Copiar (Markdown)",
+      "word": "Descargar en Word",
+      "copied": "Artículo copiado: pégalo en tu blog o en LinkedIn.",
+      "saved": "Guardado y abierto: {{name}}",
+      "language": "Idioma del artículo"
     }
   }
 }

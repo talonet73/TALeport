@@ -301,6 +301,11 @@ export function useServerEvents() {
         void queryClient.invalidateQueries({ queryKey: key })
       }
     })
+    on('research.changed', (data) => {
+      const { project_id } = data as { project_id: number }
+      void queryClient.invalidateQueries({ queryKey: ['research', project_id] })
+      void queryClient.invalidateQueries({ queryKey: ['research'], exact: true })
+    })
     on('videos.changed', () => {
       void queryClient.invalidateQueries({ queryKey: ['video-projects'] })
     })

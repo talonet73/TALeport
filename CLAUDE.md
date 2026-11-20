@@ -20,6 +20,7 @@ Nome: sempre **TALeport** nei testi visibili; `taleport` per pacchetti, cartelle
 |---|---|---|
 | Comunicazione UI ↔ backend | **FastAPI** su `127.0.0.1`, porta casuale, token di sessione nell'header `X-TALeport-Token`; **SSE** per avanzamento scansioni e notifiche | Il bridge pywebview è solo chiamata/risposta, poco adatto a flussi continui e difficile da testare. FastAPI permette di sviluppare la UI nel browser (Vite) e testare le API con pytest |
 | Finestra | pywebview (WebView2), minimo 1280×720, ridimensionabile; il token viene passato alla pagina all'avvio | — |
+| Ricerca su obiettivo | `research/`: piano AI → fonti senza chiavi (Wikipedia API, RSS Reddit, yt-dlp `ytsearch`) + video (yt-dlp solo audio → faster-whisper) + documenti + web via chat → dossier con fonti numerate → post (generatore da contenuto lungo) o articolo | Materiale evergreen gratis; YouTube richiede un runtime JS: Deno scaricato al primo uso se manca |
 | Tray | pystray + Pillow; chiudere la finestra la riduce nella tray (opzione nelle impostazioni) | Le scansioni pianificate girano anche a finestra chiusa |
 | Istanza singola | mutex con nome di Windows; un secondo avvio porta in primo piano la finestra esistente | — |
 | Dati utente | `%LOCALAPPDATA%\TALeport\` (`taleport.db`, `logs\`, `exports\`) | Installazione per utente, nessun permesso di amministratore |

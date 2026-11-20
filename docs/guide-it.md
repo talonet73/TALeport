@@ -34,6 +34,15 @@ Come funziona TALeport, in breve.
 - «Analizza» scrive punti di forza, punti deboli, cosa fa la concorrenza e cosa cambiare video per video; «PDF per il cliente» crea il report da mandare.
 - Nessun accesso agli account e nessuno scraping: si usano solo i file che ti manda il cliente. «Messaggio per il cliente» ti dà il testo pronto per chiederglieli.
 
+## Ricerca su obiettivo
+
+- Quando non ti servono le notizie ma nozioni, regole, esperienze ed esempi (per un articolo o una serie di post), apri «Ricerca» nel menu e scrivi il tuo obiettivo.
+- L'AI prepara il piano: domande da coprire, parole chiave, voci di Wikipedia, ricerche su Reddit e YouTube. Correggilo come vuoi, poi premi «Cerca nelle fonti».
+- Incolla i link dei video (YouTube, Instagram, TikTok…): TALeport scarica solo l'audio, lo trascrive sul tuo PC e ne ricava i punti utili. Lavora in background, mentre usi l'app. Per YouTube, la prima volta scarica un piccolo componente (Deno).
+- Aggiungi documenti tuoi o un testo incollato. Con «Ricerca web con la tua chat» Claude o ChatGPT cercano su blog e guide e ti restituiscono le fonti con i link.
+- «Crea il dossier» mette in ordine tutto in nozioni, regole, esempi, esperienze, errori e citazioni, ognuno con le sue fonti. Togli i punti che non ti servono. La conoscenza generale dell'AI, se la attivi, è segnata a parte.
+- Dal dossier crei post per i social o un articolo, da copiare o scaricare in Word.
+
 ## Post da una reference e tono di voce
 
 - Nel Generatore scegli «Da una reference» e carica fino a 5 documenti (Word, PDF, PowerPoint o testo): l'AI trova gli argomenti e scrive i post con lo stesso tono di voce dei documenti.

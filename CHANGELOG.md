@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.6.0 — 2026-11-21
+
+Chat sul post e lunghezza in caratteri · Chat on the post and length in characters
+
+**Italiano**
+
+- Il box fluttuante diventa «Chat AI» con due schede. In «Chat sul post» scrivi la correzione («è troppo corto, portalo a 1000 caratteri», «più ironico»…) e premi Invio (o il tasto Invio): i post appena generati si aggiornano da soli. Se ne hai generati più di uno scegli quali correggere; la conversazione resta visibile. In «Indicazioni fisse» restano i dettagli da aggiungere a ogni nuova richiesta.
+- Nuovo campo «Lunghezza del post» in tutti i moduli di generazione (tema, reference, contenuto lungo, ricerca): Automatica, Breve, Media, Lunga o un numero di caratteri a scelta. La lunghezza resta salvata nella bozza e vale anche per rigenerazioni e correzioni; l'ultima scelta viene ricordata.
+- Ogni bozza mostra quanti caratteri ha il suo testo.
+
+**English**
+
+- The floating box becomes "AI chat" with two tabs. In "Chat on the post" write the correction ("it's too short, make it 1000 characters", "more ironic"…) and press Send (or the Enter key): the posts just generated update by themselves. If you generated more than one, choose which to correct; the conversation stays visible. "Standing notes" keeps the details added to every new request.
+- New "Post length" field in every generation form (theme, reference, long content, research): Automatic, Short, Medium, Long or any number of characters. The length is saved in the draft and also applies to regenerations and corrections; the last choice is remembered.
+- Each draft shows how many characters its text has.
+
 ## 1.5.0 — 2026-11-20
 
 Ricerca su obiettivo · Research from a goal

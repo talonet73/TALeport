@@ -26,6 +26,7 @@ How TALeport works, in short.
 - Edit with AI: under each new draft press "Edit with AI", write what to change (or pick "Shorter", "More ironic"…) and press Enter: the selected AI rewrites that post in place. You can ask for more changes one after another.
 - Post image: each draft has an English prompt ready for Gemini, in the right format for the platform. "Open Gemini" copies it and opens Gemini: paste it there and ask for the image.
 - With "Open in chat" your chat writes the post and you paste its answer here, not the prompt. To get it already written without copy and paste, press "Write it here with Ollama": from then on the app writes by itself, for free.
+- Post length: in the generation forms choose Short, Medium, Long or a number of characters; "Automatic" uses the platform's usual length. Each draft shows how many characters it has.
 
 ## Video analysis for clients
 
@@ -54,7 +55,7 @@ How TALeport works, in short.
 - Ollama: free and on your PC. Install it from the official site, start it and download a model.
 - API key (Claude, ChatGPT, Grok, Perplexity, Gemini): automatic, paid use. The estimated cost goes into the spending counter and the monthly cap blocks calls once reached.
 - “Open in chat”: uses your account in the browser. TALeport copies the prompt, opens the site and you paste the answer back. Free, no keys.
-- Notes for the AI: press the notepad button at the top (next to notifications). A box opens that you can move out of the way: write extra details (e.g. "at most 3 emojis on Instagram, mention the 12/12 launch") and, while it is on, every request to the selected AI gets them, "Open in chat" included. They add to the tone of voice and the reference; the green dot shows they are active.
+- AI chat: the notepad button at the top opens a box you can move. In the "Chat on the post" tab write the correction (e.g. "it's too short, make it 1000 characters") and press Send: the posts just generated update by themselves. In the "Standing notes" tab write details to add to every new request.
 - If the chosen AI is not available, TALeport switches to “Open in chat” by itself and tells you why.
 
 ## PDF reports and “Ask”

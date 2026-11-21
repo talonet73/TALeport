@@ -99,9 +99,9 @@
     "pastedPrompt": "Hai incollato il prompt, non la risposta: incollalo in {{site}}, invialo e poi incolla qui la risposta che ti dà."
   },
   "aiNotes": {
-    "title": "Indicazioni per l'AI",
-    "button": "Indicazioni per l'AI",
-    "buttonActive": "Indicazioni per l'AI (attive)",
+    "title": "Chat AI",
+    "button": "Chat AI: correggi il post e indicazioni",
+    "buttonActive": "Chat AI (indicazioni attive)",
     "drag": "Trascina per spostare",
     "close": "Chiudi (il testo resta salvato)",
     "sentTo": "AI selezionata",
@@ -113,7 +113,23 @@
     "clear": "Svuota",
     "help": "Valgono per qualsiasi AI selezionata, anche con «Apri nella chat»: post da tema, da reference, da contenuto lungo, rigenerazioni, analisi video e domande. Si sommano al tono di voce e alla reference.",
     "hintActive": "Indicazioni extra attive · modifica",
-    "hintAdd": "Aggiungi indicazioni extra"
+    "hintAdd": "Aggiungi indicazioni extra",
+    "tabs": {
+      "chat": "Chat sul post",
+      "notes": "Indicazioni fisse"
+    },
+    "chat": {
+      "empty": "Genera un post: poi qui potrai chiedere le correzioni («più lungo», «aggiungi una domanda finale»…) e il post si aggiorna da solo.",
+      "targets": "Post da correggere",
+      "placeholder": "Es.: «È troppo corto, portalo a circa 1000 caratteri», «più ironico», «aggiungi un invito a commentare»… (Invio per inviare, Maiusc+Invio per andare a capo)",
+      "label": "Correzione da chiedere",
+      "send": "Invio",
+      "working": "Correggo il post…",
+      "hint": "Le correzioni valgono solo per i post selezionati qui sopra. Le «Indicazioni fisse» invece si aggiungono a ogni nuova richiesta.",
+      "handoff": "Con «Apri nella chat» correggo un post alla volta: incolla il prompt nella tua chat e poi incolla qui la risposta.",
+      "done_one": "✓ Post aggiornato. Vuoi cambiare altro?",
+      "done_other": "✓ {{count}} post aggiornati. Vuoi cambiare altro?"
+    }
   },
   "placeholder": {
     "title": "In costruzione",
@@ -278,7 +294,8 @@
       "series_range": "La serie va da 1 a {{max}} post.",
       "no_posts": "La risposta non contiene post per i social e le lingue scelti.",
       "reference_count": "Da 1 a 5 post per ogni social e lingua.",
-      "revision_empty": "Scrivi cosa vuoi cambiare nel post."
+      "revision_empty": "Scrivi cosa vuoi cambiare nel post.",
+      "length_range": "Scegli una lunghezza tra {{min}} e {{max}} caratteri."
     },
     "content": {
       "unreadable": "Non riesco a leggere il file. È protetto o danneggiato?",
@@ -606,6 +623,20 @@
       "generate": "Scrivi i post dalla reference",
       "topicsFound": "Argomenti trovati",
       "voiceSaved": "Tono salvato come profilo «{{name}}»."
+    },
+    "length": {
+      "label": "Lunghezza del post",
+      "auto": "Automatica",
+      "short_one": "Breve · {{count}}",
+      "short_other": "Breve · {{count}}",
+      "medium_one": "Media · {{count}}",
+      "medium_other": "Media · {{count}}",
+      "long_one": "Lunga · {{count}}",
+      "long_other": "Lunga · {{count}}",
+      "custom": "Personalizzata",
+      "unit": "caratteri",
+      "hint": "Caratteri del testo del post, spazi inclusi. «Automatica» usa la lunghezza tipica di ogni social. Vale anche per rigenerazioni e correzioni.",
+      "range": "Scegli tra {{min}} e {{max}} caratteri."
     }
   },
   "longContent": {
@@ -681,7 +712,10 @@
       }
     },
     "openGemini": "Apri Gemini",
-    "openGeminiHint": "Copia il prompt e apre Gemini: incollalo lì per creare l'immagine"
+    "openGeminiHint": "Copia il prompt e apre Gemini: incollalo lì per creare l'immagine",
+    "chars_one": "{{count}} carattere",
+    "chars_other": "{{count}} caratteri",
+    "charsHint": "Caratteri del testo del post, spazi inclusi"
   },
   "week": {
     "range": "Dal {{start}} al {{end}}",
@@ -1216,7 +1250,8 @@
           "Settimana, Tendenze parole e la casella «Chiedi» mostrano grafici e risposte sui dati raccolti.",
           "Modifica con l'AI: sotto ogni bozza appena generata premi «Modifica con l'AI», scrivi cosa cambiare (o scegli «Più corto», «Più ironico»…) e premi Invio: l'AI selezionata riscrive quel post sul posto. Puoi chiedere più modifiche di seguito.",
           "Immagine del post: ogni bozza ha un prompt in inglese pronto per Gemini, con il formato giusto per il social. «Apri Gemini» lo copia e apre Gemini: incollalo lì e chiedi l'immagine.",
-          "Con «Apri nella chat» il post lo scrive la tua chat e tu incolli qui la sua risposta, non il prompt. Per averlo già scritto senza copia e incolla premi «Scrivilo qui con Ollama»: da lì in poi l'app scrive da sola, gratis."
+          "Con «Apri nella chat» il post lo scrive la tua chat e tu incolli qui la sua risposta, non il prompt. Per averlo già scritto senza copia e incolla premi «Scrivilo qui con Ollama»: da lì in poi l'app scrive da sola, gratis.",
+          "Lunghezza del post: nei moduli di generazione scegli Breve, Media, Lunga o un numero di caratteri; con «Automatica» vale la lunghezza tipica del social. Sotto ogni bozza vedi quanti caratteri ha."
         ]
       },
       "video": {
@@ -1242,7 +1277,7 @@
           "Ollama: gratis e sul tuo PC. Installalo dal sito ufficiale, avvialo e scarica un modello.",
           "Chiave API (Claude, ChatGPT, Grok, Perplexity, Gemini): uso automatico a pagamento. Il costo stimato va nel contatore spesa e il tetto mensile blocca le chiamate quando lo raggiungi.",
           "«Apri nella chat»: usa il tuo account nel browser. TALeport copia il prompt, apre il sito e tu incolli qui la risposta. Gratis, senza chiavi.",
-          "Indicazioni per l'AI: premi il tasto col blocco note in alto (accanto alle notifiche). Si apre un box che puoi spostare dove non dà fastidio: scrivi dettagli in più (per esempio «su Instagram massimo 3 emoji, cita il lancio del 12/12») e, finché è acceso, li riceve ogni richiesta all'AI selezionata, anche con «Apri nella chat». Si sommano al tono di voce e alla reference; il pallino verde indica che sono attive.",
+          "Chat AI: il tasto con il blocco note in alto apre un box che puoi spostare. Nella scheda «Chat sul post» scrivi la correzione (per esempio «è troppo corto, portalo a 1000 caratteri») e premi Invio: i post appena generati si aggiornano da soli. Nella scheda «Indicazioni fisse» scrivi dettagli da aggiungere a ogni nuova richiesta.",
           "Se l'AI scelta non è disponibile, TALeport passa da sola ad «Apri nella chat» e ti dice perché."
         ]
       },

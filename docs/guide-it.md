@@ -26,6 +26,7 @@ Come funziona TALeport, in breve.
 - Modifica con l'AI: sotto ogni bozza appena generata premi «Modifica con l'AI», scrivi cosa cambiare (o scegli «Più corto», «Più ironico»…) e premi Invio: l'AI selezionata riscrive quel post sul posto. Puoi chiedere più modifiche di seguito.
 - Immagine del post: ogni bozza ha un prompt in inglese pronto per Gemini, con il formato giusto per il social. «Apri Gemini» lo copia e apre Gemini: incollalo lì e chiedi l'immagine.
 - Con «Apri nella chat» il post lo scrive la tua chat e tu incolli qui la sua risposta, non il prompt. Per averlo già scritto senza copia e incolla premi «Scrivilo qui con Ollama»: da lì in poi l'app scrive da sola, gratis.
+- Lunghezza del post: nei moduli di generazione scegli Breve, Media, Lunga o un numero di caratteri; con «Automatica» vale la lunghezza tipica del social. Sotto ogni bozza vedi quanti caratteri ha.
 
 ## Analisi video per i clienti
 
@@ -54,7 +55,7 @@ Come funziona TALeport, in breve.
 - Ollama: gratis e sul tuo PC. Installalo dal sito ufficiale, avvialo e scarica un modello.
 - Chiave API (Claude, ChatGPT, Grok, Perplexity, Gemini): uso automatico a pagamento. Il costo stimato va nel contatore spesa e il tetto mensile blocca le chiamate quando lo raggiungi.
 - «Apri nella chat»: usa il tuo account nel browser. TALeport copia il prompt, apre il sito e tu incolli qui la risposta. Gratis, senza chiavi.
-- Indicazioni per l'AI: premi il tasto col blocco note in alto (accanto alle notifiche). Si apre un box che puoi spostare dove non dà fastidio: scrivi dettagli in più (per esempio «su Instagram massimo 3 emoji, cita il lancio del 12/12») e, finché è acceso, li riceve ogni richiesta all'AI selezionata, anche con «Apri nella chat». Si sommano al tono di voce e alla reference; il pallino verde indica che sono attive.
+- Chat AI: il tasto con il blocco note in alto apre un box che puoi spostare. Nella scheda «Chat sul post» scrivi la correzione (per esempio «è troppo corto, portalo a 1000 caratteri») e premi Invio: i post appena generati si aggiornano da soli. Nella scheda «Indicazioni fisse» scrivi dettagli da aggiungere a ogni nuova richiesta.
 - Se l'AI scelta non è disponibile, TALeport passa da sola ad «Apri nella chat» e ti dice perché.
 
 ## Report PDF e «Chiedi»

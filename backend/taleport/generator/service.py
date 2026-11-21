@@ -38,7 +38,11 @@ MAX_POSTS_PER_REQUEST = 12
 MAX_SERIES = 10
 MAX_SOURCES = 12
 GENERATION_MAX_TOKENS = 16_000
-REVISION_MAX_CHARS = 1500  # the author's request in "Edit with AI"
+REVISION_MAX_CHARS = 1500
+TARGET_CHARS_RANGE = (
+    50,
+    5000,
+)  # post length chosen by the author, in characters  # the author's request in "Edit with AI"
 RESULT_COLUMNS = ("likes", "comments", "shares", "views")
 _NOW = "strftime('%Y-%m-%dT%H:%M:%fZ', 'now')"
 
@@ -211,6 +215,18 @@ class GeneratorService:
             languages=prompts.language_list([language], ui),
         )
 
+    def _length(self, ctx: dict[str, Any], target_chars: int | None) -> None:
+        if target_chars is not None and not (
+            TARGET_CHARS_RANGE[0] <= target_chars <= TARGET_CHARS_RANGE[1]
+        ):
+            raise AppError("generator.length_range", min=TARGET_CHARS_RANGE[0],
+                           max=TARGET_CHARS_RANGE[1])  # fmt: skip
+        ctx["target_chars"] = target_chars
+
+    def _with_length(self, prompt: prompts.Prompt, ctx: dict[str, Any], revision: bool = False):
+        return prompts.with_length(prompt, self._ai.language(), ctx.get("target_chars"),
+                                   revision=revision)  # fmt: skip
+
     # -- running ---------------------------------------------------------------------------
 
     def _run(self, prompt: prompts.Prompt, mode: str | None, feature: str) -> tuple[str, Any]:
@@ -318,11 +334,15 @@ class GeneratorService:
         tone: str | None = None,
         mode: str | None = None,
         voice_id: int | None = None,
+        target_chars: int | None = None,
     ) -> dict[str, Any]:
         self._check_theme_request(platforms, languages, variants)
         ctx = self._theme_context(theme_id)
         ctx["voice"] = self._voice_snapshot(voice_id)
-        prompt = self._theme_prompt(ctx, platforms, languages, variants, tone)
+        self._length(ctx, target_chars)
+        prompt = self._with_length(
+            self._theme_prompt(ctx, platforms, languages, variants, tone), ctx
+        )
         resolved, outcome = self._run(prompt, mode, "post_generation")
         if resolved == "chat":
             return outcome
@@ -337,10 +357,12 @@ class GeneratorService:
         languages: list[str],
         text: str,
         voice_id: int | None = None,
+        target_chars: int | None = None,
     ) -> dict[str, Any]:
         _validate_choice(platforms, languages)
         ctx = self._theme_context(theme_id)
         ctx["voice"] = self._voice_snapshot(voice_id)
+        self._length(ctx, target_chars)
         posts = parse_answer(text, GeneratedPosts)
         return self._save(self._keep_requested(posts, platforms, languages), ctx, "theme", "chat")
 
@@ -374,13 +396,15 @@ class GeneratorService:
         topic_id: int | None = None,
         mode: str | None = None,
         voice_id: int | None = None,
+        target_chars: int | None = None,
     ) -> dict[str, Any]:
         _validate_choice(platforms, [language])
         if not 1 <= count <= MAX_SERIES:
             raise AppError("generator.series_range", max=MAX_SERIES)
         ctx, truncated = self._long_context(content, title, topic_id)
         ctx["voice"] = self._voice_snapshot(voice_id)
-        prompt = self._long_prompt(ctx, count, platforms, language)
+        self._length(ctx, target_chars)
+        prompt = self._with_length(self._long_prompt(ctx, count, platforms, language), ctx)
         resolved, outcome = self._run(prompt, mode, "long_content")
         if resolved == "chat":
             return {**outcome, "truncated": truncated}
@@ -398,10 +422,12 @@ class GeneratorService:
         topic_id: int | None,
         text: str,
         voice_id: int | None = None,
+        target_chars: int | None = None,
     ) -> dict[str, Any]:
         _validate_choice(platforms, [language])
         ctx, truncated = self._long_context(content, title, topic_id)
         ctx["voice"] = self._voice_snapshot(voice_id)
+        self._length(ctx, target_chars)
         posts = parse_answer(text, GeneratedPosts)
         saved = self._save(
             self._keep_requested(posts, platforms, [language]), ctx, "long_content", "chat"
@@ -420,6 +446,7 @@ class GeneratorService:
         voice: str,
         voice_id: int | None,
         topic_id: int | None,
+        target_chars: int | None = None,
     ) -> tuple[dict[str, Any], prompts.Prompt, bool]:
         _validate_choice(platforms, languages)
         if not 1 <= count <= 5:
@@ -444,6 +471,7 @@ class GeneratorService:
         }
         if voice == "profile" and voice_id is None:
             raise AppError("validation", fields=["voice_id"])
+        self._length(ctx, target_chars)
         ui = self._ai.language()
         if voice == "reference":
             tone_text, style = tr(ui, "voice.use_reference"), "-"
@@ -460,7 +488,7 @@ class GeneratorService:
             platforms=", ".join(platforms),
             languages=prompts.language_list(languages, ui),
         )
-        return ctx, prompt, truncated
+        return ctx, self._with_length(prompt, ctx), truncated
 
     def _save_reference(
         self,
@@ -510,9 +538,10 @@ class GeneratorService:
         topic_id: int | None = None,
         save_voice: str | None = None,
         mode: str | None = None,
+        target_chars: int | None = None,
     ) -> dict[str, Any]:
         ctx, prompt, truncated = self._reference_request(
-            documents, title, count, platforms, languages, voice, voice_id, topic_id
+            documents, title, count, platforms, languages, voice, voice_id, topic_id, target_chars
         )
         resolved, provider, fallback = self._ai.resolve(mode)
         if provider is None:
@@ -540,9 +569,10 @@ class GeneratorService:
         voice_id: int | None = None,
         topic_id: int | None = None,
         save_voice: str | None = None,
+        target_chars: int | None = None,
     ) -> dict[str, Any]:
         ctx, _prompt, truncated = self._reference_request(
-            documents, title, count, platforms, languages, voice, voice_id, topic_id
+            documents, title, count, platforms, languages, voice, voice_id, topic_id, target_chars
         )
         posts = parse_answer(text, ReferencePosts)
         saved = self._save_reference(posts, ctx, platforms, languages, voice, save_voice, "chat")
@@ -560,8 +590,12 @@ class GeneratorService:
         ctx = json.loads(row["context"])
         avoid = row["text"][:600]
         if row["origin"] == "long_content":
-            return self._long_prompt(ctx, 1, [row["platform"]], row["language"], avoid=avoid)
-        return self._theme_prompt(ctx, [row["platform"]], [row["language"]], 1, None, avoid=avoid)
+            prompt = self._long_prompt(ctx, 1, [row["platform"]], row["language"], avoid=avoid)
+        else:
+            prompt = self._theme_prompt(
+                ctx, [row["platform"]], [row["language"]], 1, None, avoid=avoid
+            )
+        return self._with_length(prompt, ctx)
 
     def regenerate(self, draft_id: int, mode: str | None = None) -> dict[str, Any]:
         with self._db.connect() as conn:
@@ -599,7 +633,7 @@ class GeneratorService:
             f"[{n}] {s.get('title', '')} — {s.get('url', '')}"
             for n, s in enumerate(ctx.get("sources", []), start=1)
         )
-        return prompts.render(
+        prompt = prompts.render(
             "post_revision",
             self._ai.language(),
             platform=row["platform"],
@@ -609,6 +643,7 @@ class GeneratorService:
             sources=sources or "-",
             request=request[:REVISION_MAX_CHARS],
         )
+        return self._with_length(prompt, ctx, revision=True)
 
     def revise(self, draft_id: int, request: str, mode: str | None = None) -> dict[str, Any]:
         with self._db.connect() as conn:

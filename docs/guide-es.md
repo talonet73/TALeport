@@ -26,6 +26,7 @@ Cómo funciona TALeport, en breve.
 - Editar con la IA: bajo cada borrador nuevo pulsa «Editar con la IA», escribe qué cambiar (o elige «Más corto», «Más irónico»…) y pulsa Intro: la IA seleccionada reescribe ese post en su sitio. Puedes pedir varios cambios seguidos.
 - Imagen del post: cada borrador tiene un prompt en inglés listo para Gemini, con el formato adecuado para la red social. «Abrir Gemini» lo copia y abre Gemini: pégalo allí y pide la imagen.
 - Con «Abrir en el chat» el post lo escribe tu chat y tú pegas aquí su respuesta, no el prompt. Para tenerlo ya escrito sin copiar y pegar pulsa «Escríbelo aquí con Ollama»: desde entonces la app escribe sola, gratis.
+- Extensión del post: en los formularios de generación elige Breve, Media, Larga o un número de caracteres; «Automática» usa la extensión típica de la red. Cada borrador muestra cuántos caracteres tiene.
 
 ## Análisis de vídeo para clientes
 
@@ -54,7 +55,7 @@ Cómo funciona TALeport, en breve.
 - Ollama: gratis y en tu PC. Instálalo desde el sitio oficial, ábrelo y descarga un modelo.
 - Clave API (Claude, ChatGPT, Grok, Perplexity, Gemini): uso automático de pago. El coste estimado va al contador de gasto y el límite mensual bloquea las llamadas al alcanzarlo.
 - «Abrir en el chat»: usa tu cuenta en el navegador. TALeport copia el prompt, abre el sitio y tú pegas aquí la respuesta. Gratis, sin claves.
-- Indicaciones para la IA: pulsa el botón del bloc de notas arriba (junto a las notificaciones). Se abre un cuadro que puedes mover donde no moleste: escribe detalles extra (por ejemplo «en Instagram máximo 3 emojis, menciona el lanzamiento del 12/12») y, mientras esté activo, cada solicitud a la IA seleccionada los recibe, también con «Abrir en el chat». Se suman al tono de voz y a la referencia; el punto verde indica que están activas.
+- Chat IA: el botón del bloc de notas arriba abre un cuadro que puedes mover. En la pestaña «Chat sobre el post» escribe la corrección (p. ej. «es demasiado corto, llévalo a 1000 caracteres») y pulsa Enviar: los posts recién generados se actualizan solos. En la pestaña «Indicaciones fijas» escribe detalles que añadir a cada nueva solicitud.
 - Si la IA elegida no está disponible, TALeport pasa sola a «Abrir en el chat» y te dice por qué.
 
 ## Informes PDF y «Preguntar»

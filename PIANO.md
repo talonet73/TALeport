@@ -293,3 +293,11 @@ Richiesta: oltre alle tendenze, cercare materiale utile a un obiettivo descritto
 - [x] Prova reale completa con gemma3: dossier (9 nozioni, 16 regole, esempi, errori, 3 citazioni) e articolo in ~19 minuti in tutto. Ollama ora aspetta fino a 15 minuti per risposta (`LOCAL_TIMEOUT_SECONDS`) e il dossier chiede al massimo 6 punti per sezione
 - [x] Test: 16 nuovi (244 backend); prova dal vivo nel browser con AI simulata
 
+## Fase 16 — Chat sul post e lunghezza (1.6.0)
+Richiesta: nella chattina manca il tasto Invio; dopo che l'app ha scritto il post, chiedere le correzioni dalla chat; indicare all'inizio quanti caratteri deve avere il post.
+
+- [x] `target_chars` (50–5000) in tutte le generazioni (tema, contenuto lungo, reference, ricerca): `prompts.with_length` aggiunge la riga «circa N caratteri, spazi inclusi (±10%)», salvata nel contesto della bozza e riusata da rigenerazione e «Modifica con l'AI» (che la mantiene salvo richiesta diversa); errore `generator.length_range`
+- [x] `LengthPicker` (Automatica / Breve 300 / Media 800 / Lunga 1500 / numero libero, ultima scelta ricordata) nei quattro moduli; conteggio caratteri nell'intestazione di ogni bozza
+- [x] Box fluttuante «Chat AI» con schede «Chat sul post» (`PostChat` con `postChatStore`: bersagli = bozze dell'ultima generazione, selezionabili; cronologia; tasto Invio e tasto Invio della tastiera; con «Apri nella chat» un post alla volta con incolla della risposta) e «Indicazioni fisse»
+- [x] Test: 2 backend (246); verificato dal vivo nel browser (post da 117 a 473 caratteri dopo la richiesta in chat)
+

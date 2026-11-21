@@ -25,6 +25,7 @@ class ThemeGeneration(BaseModel):
     tone: str | None = Field(None, max_length=300)
     mode: str | None = None
     voice_id: int | None = None
+    target_chars: int | None = None  # post length chosen by the author (characters)
 
 
 class ThemeGenerationParse(ThemeGeneration):
@@ -35,14 +36,14 @@ class ThemeGenerationParse(ThemeGeneration):
 def generate_from_theme(request: Request, body: ThemeGeneration) -> dict[str, Any]:
     return _ctx(request).generator.generate_from_theme(
         body.theme_id, body.platforms, body.languages, body.variants, body.tone, body.mode,
-        body.voice_id,
+        body.voice_id, body.target_chars,
     )  # fmt: skip
 
 
 @router.post("/generator/theme/parse")
 def parse_from_theme(request: Request, body: ThemeGenerationParse) -> dict[str, Any]:
     return _ctx(request).generator.parse_from_theme(
-        body.theme_id, body.platforms, body.languages, body.text, body.voice_id
+        body.theme_id, body.platforms, body.languages, body.text, body.voice_id, body.target_chars
     )
 
 
@@ -55,6 +56,7 @@ class LongGeneration(BaseModel):
     topic_id: int | None = None
     mode: str | None = None
     voice_id: int | None = None
+    target_chars: int | None = None  # post length chosen by the author (characters)
 
 
 class LongGenerationParse(LongGeneration):
@@ -72,6 +74,7 @@ def generate_long(request: Request, body: LongGeneration) -> dict[str, Any]:
         body.topic_id,
         body.mode,
         body.voice_id,
+        body.target_chars,
     )
 
 
@@ -79,7 +82,7 @@ def generate_long(request: Request, body: LongGeneration) -> dict[str, Any]:
 def parse_long(request: Request, body: LongGenerationParse) -> dict[str, Any]:
     return _ctx(request).generator.parse_long(
         body.content, body.title, body.platforms, body.language, body.topic_id, body.text,
-        body.voice_id,
+        body.voice_id, body.target_chars,
     )  # fmt: skip
 
 
@@ -195,6 +198,7 @@ class ReferenceGeneration(BaseModel):
     topic_id: int | None = None
     save_voice: str | None = Field(None, max_length=80)  # set: save the documents' voice
     mode: str | None = None
+    target_chars: int | None = None  # post length chosen by the author (characters)
 
     def args(self) -> dict[str, Any]:
         return {
@@ -202,6 +206,7 @@ class ReferenceGeneration(BaseModel):
             "platforms": self.platforms, "languages": self.languages, "count": self.count,
             "title": self.title, "voice": self.voice, "voice_id": self.voice_id,
             "topic_id": self.topic_id, "save_voice": self.save_voice,
+            "target_chars": self.target_chars,
         }  # fmt: skip
 
 

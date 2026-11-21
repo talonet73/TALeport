@@ -14,9 +14,10 @@ export interface AiNotesState {
   enabled: boolean
   text: string
   position: { x: number; y: number } | null // null = bottom-right corner
+  tab: 'chat' | 'notes'
 }
 
-const DEFAULT: AiNotesState = { open: false, enabled: true, text: '', position: null }
+const DEFAULT: AiNotesState = { open: false, enabled: true, text: '', position: null, tab: 'chat' }
 
 function load(): AiNotesState {
   try {
@@ -31,6 +32,7 @@ function load(): AiNotesState {
         saved.position && Number.isFinite(saved.position.x) && Number.isFinite(saved.position.y)
           ? { x: saved.position.x, y: saved.position.y }
           : null,
+      tab: saved.tab === 'notes' ? 'notes' : 'chat',
     }
   } catch {
     return DEFAULT

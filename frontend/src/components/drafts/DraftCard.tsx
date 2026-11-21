@@ -59,6 +59,10 @@ export function DraftCard({ draft }: { draft: Draft }) {
             : t('drafts.variant', { n: draft.variant })}
           {' · '}
           {draft.source_label}
+          {' · '}
+          <span title={t('drafts.charsHint')}>
+            {t('drafts.chars', { count: (draft.edited ? draft.text : draft.content.text || draft.text).length })}
+          </span>
         </span>
         <span className="ml-auto text-sm font-medium text-accent-text">{statusLabel(draft, t, i18n.language)}</span>
       </header>

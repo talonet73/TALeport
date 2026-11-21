@@ -98,3 +98,44 @@ def test_image_prompts_are_gemini_ready_in_every_template(language: str) -> None
         "post_revision", language, platform="instagram", post_language="it", post=json.dumps({})
     )
     assert "instagram" in revision.user
+
+
+def test_target_length_reaches_generation_regeneration_and_revision(gen_ctx, fake) -> None:
+    _analysed_topic(gen_ctx)
+    theme = gen_ctx.analysis.today_overview()["topics"][0]["themes"][0]
+    with pytest.raises(AppError) as info:
+        gen_ctx.generator.generate_from_theme(theme["id"], ["linkedin"], ["it"], mode="openai",
+                                              target_chars=10)  # fmt: skip
+    assert info.value.code == "generator.length_range"
+
+    fake.answers.append(_posts(LINKEDIN))
+    draft = gen_ctx.generator.generate_from_theme(
+        theme["id"], ["linkedin"], ["it"], mode="openai", target_chars=400
+    )["drafts"][0]
+    assert "circa 400 caratteri" in fake.calls[-1][1]
+
+    fake.answers.append(_posts(LINKEDIN))
+    gen_ctx.generator.regenerate(draft["id"], "openai")
+    assert "circa 400 caratteri" in fake.calls[-1][1]  # kept in the draft
+
+    fake.answers.append(_posts(LINKEDIN))
+    gen_ctx.generator.revise(draft["id"], "più ironico", "openai")
+    assert "circa 400 caratteri" in fake.calls[-1][1] and "salvo che" in fake.calls[-1][1]
+
+    fake.answers.append(_posts(LINKEDIN))
+    gen_ctx.generator.generate_from_theme(theme["id"], ["linkedin"], ["it"], mode="openai")
+    assert "caratteri, spazi" not in fake.calls[-1][1]  # automatic length: no line
+
+
+def test_target_length_in_long_content_api(client, ctx) -> None:
+    body = {
+        "content": "Contenuto lungo per la prova della lunghezza. " * 10,
+        "count": 1,
+        "platforms": ["instagram"],
+        "language": "it",
+        "mode": "chat",
+        "target_chars": 900,
+    }
+    answer = client.post("/api/generator/long", json=body)
+    assert answer.status_code == 200, answer.text
+    assert "circa 900 caratteri" in answer.json()["handoff"]["prompt"]

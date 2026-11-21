@@ -17,6 +17,7 @@ import { Modal } from '../../components/Modal'
 import { PriorityNote } from '../../components/results/PriorityNote'
 import { useErrorMessage } from '../../components/useErrorMessage'
 import { useTopicVoice, VoiceSelect } from '../../components/voices/VoiceSelect'
+import { LengthPicker, targetChars, usePostLength } from '../../components/drafts/LengthPicker'
 import { ReferenceSource } from './ReferenceSource'
 
 const MAX_POSTS = 12
@@ -41,6 +42,7 @@ export function GeneratorPage() {
   const [batchId, setBatchId] = useState<string | null>(null)
   const [source, setSource] = useState<'theme' | 'reference'>(params.get('source') === 'reference' ? 'reference' : 'theme')
   const [voice, setVoice] = useState('')
+  const [length, setLength] = usePostLength()
 
   const sections = today?.topics ?? []
   const theme = sections.flatMap((s) => s.themes).find((th) => th.id === themeId)
@@ -62,7 +64,7 @@ export function GeneratorPage() {
   useEffect(() => setVoice(topicVoice), [topicVoice])
 
   const total = platforms.length * Math.max(languages.length, 1) * variants
-  const request = { theme_id: themeId, platforms, languages, variants, tone: tone || null, voice_id: voice ? Number(voice) : null }
+  const request = { theme_id: themeId, platforms, languages, variants, tone: tone || null, voice_id: voice ? Number(voice) : null, target_chars: targetChars(length) }
   const flow = useAiFlow<never>({
     start: (m) => aiPost('/generator/theme', { ...request, mode: m }),
     parse: (text) => aiPost('/generator/theme/parse', { ...request, text }),
@@ -135,6 +137,7 @@ export function GeneratorPage() {
           <LanguagePicker value={languages} onChange={setLanguages} />
 
           <VoiceSelect value={voice} onChange={setVoice} />
+          <LengthPicker value={length} onChange={setLength} />
 
           <div className="grid gap-4 md:grid-cols-3">
             <label className="flex flex-col gap-2">

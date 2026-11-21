@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useBatch, useDrafts } from '../../api/hooks'
+import { setChatDrafts } from '../ai/postChatStore'
 import { DraftCard } from './DraftCard'
 
 /** Drafts of the last generation, then the most recent ones. */
@@ -9,6 +11,10 @@ export function GenerationResults({ batchId, truncated }: { batchId: string | nu
   const { data: batch = [] } = useBatch(batchId)
   const { data: recent = [] } = useDrafts(20)
   const others = recent.filter((d) => d.batch_id !== batchId)
+  // The drafts just generated are the ones the chat in the floating box corrects.
+  useEffect(() => {
+    if (batch.length) setChatDrafts([...batch].reverse())
+  }, [batch])
 
   return (
     <div className="space-y-6">

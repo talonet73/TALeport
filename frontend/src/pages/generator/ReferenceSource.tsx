@@ -15,6 +15,7 @@ import { useErrorMessage } from '../../components/useErrorMessage'
 import { DocumentsPicker } from '../../components/voices/DocumentsPicker'
 import { useDocuments } from '../../components/voices/useDocuments'
 import { VoiceSelect } from '../../components/voices/VoiceSelect'
+import { LengthPicker, targetChars, usePostLength } from '../../components/drafts/LengthPicker'
 
 const MAX_POSTS = 12
 const fieldClass =
@@ -44,6 +45,7 @@ export function ReferenceSource({ onBatch }: { onBatch: (batchId: string | null)
   const [saveVoice, setSaveVoice] = useState(false)
   const [voiceName, setVoiceName] = useState('')
   const [mode, setMode] = useState<AiMode | null>(null)
+  const [length, setLength] = usePostLength()
   const [outcome, setOutcome] = useState<ReferenceOutcome | null>(null)
 
   const total = count * platforms.length * Math.max(languages.length, 1)
@@ -57,6 +59,7 @@ export function ReferenceSource({ onBatch }: { onBatch: (batchId: string | null)
     voice_id: !fromReference && voice ? Number(voice) : null,
     topic_id: topicId,
     save_voice: fromReference && saveVoice ? voiceName : null,
+    target_chars: targetChars(length),
   }
   const flow = useAiFlow<never>({
     start: (m) => aiPost('/generator/reference', { ...request, mode: m }),
@@ -78,6 +81,7 @@ export function ReferenceSource({ onBatch }: { onBatch: (batchId: string | null)
 
       <PlatformPicker value={platforms} onChange={setPlatforms} />
       <LanguagePicker value={languages} onChange={setLanguages} />
+      <LengthPicker value={length} onChange={setLength} />
 
       <div className="grid gap-4 md:grid-cols-2">
         <VoiceSelect

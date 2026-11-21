@@ -15,6 +15,7 @@ import { GenerationResults } from '../../components/drafts/GenerationPanel'
 import { LanguagePicker, PlatformPicker } from '../../components/drafts/Pickers'
 import { useErrorMessage } from '../../components/useErrorMessage'
 import { VoiceSelect } from '../../components/voices/VoiceSelect'
+import { LengthPicker, targetChars, usePostLength } from '../../components/drafts/LengthPicker'
 import { fieldClass, primaryButton, secondaryButton } from './styles'
 
 type Tab = 'posts' | 'article'
@@ -57,6 +58,7 @@ function PostsFromDossier({ project }: { project: ResearchProject }) {
   const [languages, setLanguages] = useState<Language[]>([project.languages[0] ?? 'it'])
   const [count, setCount] = useState(3)
   const [voice, setVoice] = useState('')
+  const [length, setLength] = usePostLength()
   const [batchId, setBatchId] = useState<string | null>(null)
 
   const request = async () => {
@@ -69,6 +71,7 @@ function PostsFromDossier({ project }: { project: ResearchProject }) {
       language: languages[0],
       topic_id: null,
       voice_id: voice ? Number(voice) : null,
+      target_chars: targetChars(length),
     }
   }
   const flow = useAiFlow<never>({
@@ -94,6 +97,7 @@ function PostsFromDossier({ project }: { project: ResearchProject }) {
         </label>
         <VoiceSelect value={voice} onChange={setVoice} defaultLabel={t('research.content.defaultTone')} />
       </div>
+      <LengthPicker value={length} onChange={setLength} />
       {flow.phase === 'handoff' && flow.handoff ? (
         <HandoffPanel handoff={flow.handoff} fallback={flow.fallback} error={flow.error}
           onSubmit={flow.submitPasted} onRetry={(m) => void flow.run(m)} />

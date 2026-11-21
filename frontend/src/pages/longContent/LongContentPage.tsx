@@ -15,6 +15,7 @@ import { LanguagePicker, PlatformPicker } from '../../components/drafts/Pickers'
 import { Modal } from '../../components/Modal'
 import { useErrorMessage } from '../../components/useErrorMessage'
 import { useTopicVoice, VoiceSelect } from '../../components/voices/VoiceSelect'
+import { LengthPicker, targetChars, usePostLength } from '../../components/drafts/LengthPicker'
 
 const fieldClass =
   'w-full rounded-xl border border-line bg-surface-raised px-3 py-2.5 text-ink outline-none placeholder:text-muted focus:border-accent'
@@ -38,6 +39,7 @@ export function LongContentPage() {
   const [fileError, setFileError] = useState<unknown>(null)
   const [reading, setReading] = useState(false)
   const [voice, setVoice] = useState('')
+  const [length, setLength] = usePostLength()
   const topicVoice = useTopicVoice(topicId)
   useEffect(() => setVoice(topicVoice), [topicVoice])
 
@@ -49,6 +51,7 @@ export function LongContentPage() {
     language: languages[0],
     topic_id: topicId,
     voice_id: voice ? Number(voice) : null,
+    target_chars: targetChars(length),
   }
   const flow = useAiFlow<never>({
     start: (m) => aiPost('/generator/long', { ...request, mode: m }),
@@ -155,6 +158,7 @@ export function LongContentPage() {
             <AiModeSelect value={mode ?? settings?.default_ai ?? 'chat'} onChange={setMode} />
           </div>
           <VoiceSelect value={voice} onChange={setVoice} />
+          <LengthPicker value={length} onChange={setLength} />
 
           {flow.error !== null && flow.phase !== 'handoff' && <p className="text-red-400">{errorMessage(flow.error)}</p>}
           <div className="flex flex-wrap items-center gap-4">

@@ -1,4 +1,4 @@
-import { GripHorizontal, NotebookPen, X } from 'lucide-react'
+import { GripHorizontal, MessageSquareText, NotebookPen, X } from 'lucide-react'
 import { type PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -6,6 +6,8 @@ import { useSettings, useUpdateSettings } from '../../api/hooks'
 import { AI_MODES, type AiMode } from '../../api/types'
 import { Toggle } from '../Toggle'
 import { MAX_NOTES, notesActive, updateAiNotes, useAiNotes } from './aiNotes'
+import { PostChat } from './PostChat'
+import { usePostChat } from './postChatStore'
 
 const WIDTH = 380
 const MARGIN = 16
@@ -31,6 +33,12 @@ export function AiNotesPanel() {
   const panel = useRef<HTMLDivElement>(null)
   const drag = useRef<{ dx: number; dy: number } | null>(null)
   const [, forceLayout] = useState(0)
+  const chat = usePostChat()
+
+  // A new generation makes the chat on the post the open tab.
+  useEffect(() => {
+    if (chat.targets.length) updateAiNotes({ tab: 'chat' })
+  }, [chat.targets])
 
   // Keep the box on screen when the window gets smaller.
   useEffect(() => {
@@ -111,36 +119,60 @@ export function AiNotesPanel() {
           </select>
         </label>
 
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-sm font-medium text-ink">{t('aiNotes.enabled')}</span>
-          <Toggle checked={notes.enabled} onChange={(enabled) => updateAiNotes({ enabled })} label={t('aiNotes.enabled')} />
+        <div className="grid grid-cols-2 gap-1 rounded-full border border-line bg-surface-raised p-1" role="tablist">
+          {(['chat', 'notes'] as const).map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              role="tab"
+              aria-selected={notes.tab === tab}
+              onClick={() => updateAiNotes({ tab })}
+              className={`flex items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium ${
+                notes.tab === tab ? 'bg-accent-gradient text-on-accent' : 'text-ink'
+              }`}
+            >
+              {tab === 'chat' ? <MessageSquareText className="size-4" aria-hidden /> : <NotebookPen className="size-4" aria-hidden />}
+              {t(`aiNotes.tabs.${tab}`)}
+            </button>
+          ))}
         </div>
 
-        <textarea
-          value={notes.text}
-          onChange={(event) => updateAiNotes({ text: event.target.value })}
-          maxLength={MAX_NOTES}
-          rows={8}
-          autoFocus={!notes.text}
-          placeholder={t('aiNotes.placeholder')}
-          aria-label={t('aiNotes.title')}
-          className="min-h-32 resize-y rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-ink outline-none focus:border-accent"
-        />
+        {notes.tab === 'chat' ? (
+          <PostChat />
+        ) : (
+          <>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-sm font-medium text-ink">{t('aiNotes.enabled')}</span>
+            <Toggle checked={notes.enabled} onChange={(enabled) => updateAiNotes({ enabled })} label={t('aiNotes.enabled')} />
+          </div>
 
-        <div className="flex items-center justify-between gap-3 text-xs">
-          <span className={active ? 'font-medium text-emerald-400' : 'text-muted'} role="status">
-            {active ? t('aiNotes.statusOn') : notes.text.trim() ? t('aiNotes.statusPaused') : t('aiNotes.statusEmpty')}
-          </span>
-          <span className="flex items-center gap-3 text-muted">
-            {notes.text.length}/{MAX_NOTES}
-            {notes.text && (
-              <button type="button" onClick={() => updateAiNotes({ text: '' })} className="font-medium text-accent hover:underline">
-                {t('aiNotes.clear')}
-              </button>
-            )}
-          </span>
-        </div>
-        <p className="text-xs text-muted">{t('aiNotes.help')}</p>
+          <textarea
+            value={notes.text}
+            onChange={(event) => updateAiNotes({ text: event.target.value })}
+            maxLength={MAX_NOTES}
+            rows={8}
+            autoFocus={!notes.text}
+            placeholder={t('aiNotes.placeholder')}
+            aria-label={t('aiNotes.title')}
+            className="min-h-32 resize-y rounded-xl border border-line bg-surface-raised px-3 py-2 text-sm text-ink outline-none focus:border-accent"
+          />
+
+          <div className="flex items-center justify-between gap-3 text-xs">
+            <span className={active ? 'font-medium text-emerald-400' : 'text-muted'} role="status">
+              {active ? t('aiNotes.statusOn') : notes.text.trim() ? t('aiNotes.statusPaused') : t('aiNotes.statusEmpty')}
+            </span>
+            <span className="flex items-center gap-3 text-muted">
+              {notes.text.length}/{MAX_NOTES}
+              {notes.text && (
+                <button type="button" onClick={() => updateAiNotes({ text: '' })} className="font-medium text-accent hover:underline">
+                  {t('aiNotes.clear')}
+                </button>
+              )}
+            </span>
+          </div>
+          <p className="text-xs text-muted">{t('aiNotes.help')}</p>
+          </>
+        )}
       </div>
     </div>
   )

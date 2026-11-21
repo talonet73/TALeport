@@ -99,9 +99,9 @@
     "pastedPrompt": "You pasted the prompt, not the answer: paste it into {{site}}, send it, then paste its answer here."
   },
   "aiNotes": {
-    "title": "Notes for the AI",
-    "button": "Notes for the AI",
-    "buttonActive": "Notes for the AI (active)",
+    "title": "AI chat",
+    "button": "AI chat: fix the post and notes",
+    "buttonActive": "AI chat (notes active)",
     "drag": "Drag to move",
     "close": "Close (the text stays saved)",
     "sentTo": "Selected AI",
@@ -113,7 +113,23 @@
     "clear": "Clear",
     "help": "They work with any selected AI, \"Open in chat\" included: posts from a theme, a reference or long content, regenerations, video analysis and questions. They add to the tone of voice and the reference.",
     "hintActive": "Extra notes active · edit",
-    "hintAdd": "Add extra notes"
+    "hintAdd": "Add extra notes",
+    "tabs": {
+      "chat": "Chat on the post",
+      "notes": "Standing notes"
+    },
+    "chat": {
+      "empty": "Generate a post: then you can ask for corrections here (\"longer\", \"end with a question\"…) and the post updates by itself.",
+      "targets": "Posts to correct",
+      "placeholder": "E.g.: \"It's too short, make it about 1000 characters\", \"more ironic\", \"add a call to comment\"… (Enter to send, Shift+Enter for a new line)",
+      "label": "Correction to ask for",
+      "send": "Send",
+      "working": "Correcting the post…",
+      "hint": "Corrections apply only to the posts selected above. \"Standing notes\" instead are added to every new request.",
+      "handoff": "With \"Open in chat\" I correct one post at a time: paste the prompt into your chat, then paste its answer here.",
+      "done_one": "✓ Post updated. Anything else?",
+      "done_other": "✓ {{count}} posts updated. Anything else?"
+    }
   },
   "placeholder": {
     "title": "Under construction",
@@ -278,7 +294,8 @@
       "series_range": "The series goes from 1 to {{max}} posts.",
       "no_posts": "The answer has no posts for the chosen networks and languages.",
       "reference_count": "From 1 to 5 posts per network and language.",
-      "revision_empty": "Write what you want to change in the post."
+      "revision_empty": "Write what you want to change in the post.",
+      "length_range": "Choose a length between {{min}} and {{max}} characters."
     },
     "content": {
       "unreadable": "Can't read the file. Is it protected or damaged?",
@@ -606,6 +623,20 @@
       "generate": "Write the posts from the reference",
       "topicsFound": "Topics found",
       "voiceSaved": "Tone saved as the profile “{{name}}”."
+    },
+    "length": {
+      "label": "Post length",
+      "auto": "Automatic",
+      "short_one": "Short · {{count}}",
+      "short_other": "Short · {{count}}",
+      "medium_one": "Medium · {{count}}",
+      "medium_other": "Medium · {{count}}",
+      "long_one": "Long · {{count}}",
+      "long_other": "Long · {{count}}",
+      "custom": "Custom",
+      "unit": "characters",
+      "hint": "Characters of the post text, spaces included. \"Automatic\" uses each platform's usual length. It also applies to regenerations and corrections.",
+      "range": "Choose between {{min}} and {{max}} characters."
     }
   },
   "longContent": {
@@ -681,7 +712,10 @@
       }
     },
     "openGemini": "Open Gemini",
-    "openGeminiHint": "Copies the prompt and opens Gemini: paste it there to create the image"
+    "openGeminiHint": "Copies the prompt and opens Gemini: paste it there to create the image",
+    "chars_one": "{{count}} character",
+    "chars_other": "{{count}} characters",
+    "charsHint": "Characters of the post text, spaces included"
   },
   "week": {
     "range": "From {{start}} to {{end}}",
@@ -1216,7 +1250,8 @@
           "Week, Keyword trends and the “Ask” box show charts and answers on the collected data.",
           "Edit with AI: under each new draft press \"Edit with AI\", write what to change (or pick \"Shorter\", \"More ironic\"…) and press Enter: the selected AI rewrites that post in place. You can ask for more changes one after another.",
           "Post image: each draft has an English prompt ready for Gemini, in the right format for the platform. \"Open Gemini\" copies it and opens Gemini: paste it there and ask for the image.",
-          "With \"Open in chat\" your chat writes the post and you paste its answer here, not the prompt. To get it already written without copy and paste, press \"Write it here with Ollama\": from then on the app writes by itself, for free."
+          "With \"Open in chat\" your chat writes the post and you paste its answer here, not the prompt. To get it already written without copy and paste, press \"Write it here with Ollama\": from then on the app writes by itself, for free.",
+          "Post length: in the generation forms choose Short, Medium, Long or a number of characters; \"Automatic\" uses the platform's usual length. Each draft shows how many characters it has."
         ]
       },
       "video": {
@@ -1242,7 +1277,7 @@
           "Ollama: free and on your PC. Install it from the official site, start it and download a model.",
           "API key (Claude, ChatGPT, Grok, Perplexity, Gemini): automatic, paid use. The estimated cost goes into the spending counter and the monthly cap blocks calls once reached.",
           "“Open in chat”: uses your account in the browser. TALeport copies the prompt, opens the site and you paste the answer back. Free, no keys.",
-          "Notes for the AI: press the notepad button at the top (next to notifications). A box opens that you can move out of the way: write extra details (e.g. \"at most 3 emojis on Instagram, mention the 12/12 launch\") and, while it is on, every request to the selected AI gets them, \"Open in chat\" included. They add to the tone of voice and the reference; the green dot shows they are active.",
+          "AI chat: the notepad button at the top opens a box you can move. In the \"Chat on the post\" tab write the correction (e.g. \"it's too short, make it 1000 characters\") and press Send: the posts just generated update by themselves. In the \"Standing notes\" tab write details to add to every new request.",
           "If the chosen AI is not available, TALeport switches to “Open in chat” by itself and tells you why."
         ]
       },

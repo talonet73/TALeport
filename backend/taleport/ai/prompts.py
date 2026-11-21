@@ -7,7 +7,7 @@ The first line carries the version: `<!-- version: N -->`.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import cache
 from pathlib import Path
 
@@ -82,6 +82,37 @@ def load(name: str, language: str) -> Template:
 
 def _fill(text: str, values: dict[str, str]) -> str:
     return _VARIABLE.sub(lambda m: values.get(m.group(1), m.group(0)), text)
+
+
+# Post length chosen by the author in the generation form ("Post length, characters").
+LENGTH_LINE = {
+    "it": (
+        'Lunghezza: il testo di ogni post ("text") deve avere circa {n} caratteri, spazi '
+        "inclusi (±10%). Questa indicazione vale più delle lunghezze indicate sopra."
+    ),
+    "en": (
+        'Length: the text of each post ("text") must be about {n} characters, spaces '
+        "included (±10%). This overrides the lengths given above."
+    ),
+    "es": (
+        'Extensión: el texto de cada post ("text") debe tener unos {n} caracteres, espacios '
+        "incluidos (±10%). Esta indicación prevalece sobre las extensiones indicadas arriba."
+    ),
+}
+LENGTH_UNLESS = {
+    "it": " Mantienila, salvo che la richiesta dell'autore chieda un'altra lunghezza.",
+    "en": " Keep it, unless the author's request asks for another length.",
+    "es": " Mantenla, salvo que la petición del autor pida otra extensión.",
+}
+
+
+def with_length(prompt: Prompt, language: str, chars: int | None, *, revision: bool = False):
+    """Add the author's target length (in characters) to a post prompt."""
+    if not chars:
+        return prompt
+    lang = language if language in LENGTH_LINE else FALLBACK_LANGUAGE
+    line = LENGTH_LINE[lang].format(n=chars) + (LENGTH_UNLESS[lang] if revision else "")
+    return replace(prompt, user=f"{prompt.user}\n\n{line}")
 
 
 def with_extra(user: str, language: str, notes: str) -> str:

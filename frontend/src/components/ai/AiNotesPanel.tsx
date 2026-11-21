@@ -1,4 +1,4 @@
-import { GripHorizontal, MessageSquareText, NotebookPen, X } from 'lucide-react'
+import { GripHorizontal, Loader2, MessageSquareText, NotebookPen, Send, X } from 'lucide-react'
 import { type PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -6,7 +6,7 @@ import { useSettings, useUpdateSettings } from '../../api/hooks'
 import { AI_MODES, type AiMode } from '../../api/types'
 import { Toggle } from '../Toggle'
 import { MAX_NOTES, notesActive, updateAiNotes, useAiNotes } from './aiNotes'
-import { PostChat } from './PostChat'
+import { PostChat, PostPicker, useChatDrafts, useReviseDraft } from './PostChat'
 import { usePostChat } from './postChatStore'
 
 const WIDTH = 380
@@ -37,8 +37,8 @@ export function AiNotesPanel() {
 
   // A new generation makes the chat on the post the open tab.
   useEffect(() => {
-    if (chat.targets.length) updateAiNotes({ tab: 'chat' })
-  }, [chat.targets])
+    if (chat.batch.length) updateAiNotes({ tab: 'chat' })
+  }, [chat.batch])
 
   // Keep the box on screen when the window gets smaller.
   useEffect(() => {
@@ -170,10 +170,61 @@ export function AiNotesPanel() {
               )}
             </span>
           </div>
+          <NotesSend />
           <p className="text-xs text-muted">{t('aiNotes.help')}</p>
           </>
         )}
       </div>
+    </div>
+  )
+}
+
+/**
+ * "Send" for the fixed instructions: saves and switches them on (they then go with every AI
+ * request) and, if asked, rewrites the chosen post right away following them.
+ */
+function NotesSend() {
+  const { t } = useTranslation()
+  const notes = useAiNotes()
+  const chat = usePostChat()
+  const { options, current } = useChatDrafts()
+  const { revise } = useReviseDraft()
+  const [applyNow, setApplyNow] = useState(false)
+  const [sent, setSent] = useState<string | null>(null)
+
+  const send = async () => {
+    const text = notes.text.trim()
+    if (!text) return
+    updateAiNotes({ text, enabled: true })
+    setSent(t('aiNotes.sent'))
+    if (applyNow && current) {
+      // The notes now travel in the request header; the chat shows how it went.
+      const ok = await revise(current, t('aiNotes.applyRequest', { notes: text }))
+      if (ok) updateAiNotes({ tab: 'chat' })
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-2 rounded-xl border border-line p-3">
+      <label className="flex items-center gap-2 text-sm text-ink">
+        <input type="checkbox" checked={applyNow} onChange={(e) => setApplyNow(e.target.checked)} className="accent-current" />
+        {t('aiNotes.applyNow')}
+      </label>
+      {applyNow && <PostPicker options={options} current={current} />}
+      <button
+        type="button"
+        disabled={!notes.text.trim() || chat.busy || (applyNow && !current)}
+        onClick={() => void send()}
+        className="flex items-center justify-center gap-2 rounded-full bg-accent-gradient px-4 py-2 font-semibold text-on-accent disabled:opacity-50"
+      >
+        {chat.busy ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Send className="size-4" aria-hidden />}
+        {chat.busy ? t('aiNotes.chat.working') : t('aiNotes.send')}
+      </button>
+      {sent && !chat.busy && (
+        <span className="text-xs font-medium text-emerald-400" role="status">
+          {sent}
+        </span>
+      )}
     </div>
   )
 }

@@ -1,31 +1,35 @@
 import { useSyncExternalStore } from 'react'
 
-import type { Draft, Language, Platform } from '../../api/types'
+import type { Draft, Handoff } from '../../api/types'
 
 /**
- * "Chat on the post" in the floating box: the drafts of the last generation shown on screen
- * are the ones the chat corrects, and the conversation is kept while the app is open.
+ * "Chat on the post" in the floating box. The author picks ONE post from a dropdown (the
+ * posts of the last generation first, then the recent drafts) and the chat rewrites it.
+ * The conversation is kept while the app is open.
  */
-export interface ChatTarget {
-  id: number
-  platform: Platform
-  language: Language
-  label: string
-}
-
 export interface ChatMessage {
   role: 'user' | 'app'
   text: string
   error?: boolean
 }
 
-interface State {
-  targets: ChatTarget[]
-  selected: number[]
-  messages: ChatMessage[]
+export interface ChatPending {
+  draftId: number
+  handoff: Handoff
+  request: string
 }
 
-let state: State = { targets: [], selected: [], messages: [] }
+interface State {
+  /** Ids of the last generation shown on screen, in display order. */
+  batch: number[]
+  /** Post chosen in the dropdown (null: the first available one). */
+  selectedId: number | null
+  messages: ChatMessage[]
+  pending: ChatPending | null
+  busy: boolean
+}
+
+let state: State = { batch: [], selectedId: null, messages: [], pending: null, busy: false }
 const listeners = new Set<() => void>()
 
 function emit(next: Partial<State>) {
@@ -42,28 +46,50 @@ export function usePostChat(): State {
   return useSyncExternalStore(subscribe, () => state)
 }
 
-/** Called by the generation results: a new batch becomes the subject of the chat. */
-export function setChatDrafts(drafts: Draft[]) {
-  const ids = drafts.map((d) => d.id)
-  const same = ids.length === state.targets.length && ids.every((id, i) => id === state.targets[i]?.id)
-  if (same) return
-  emit({
-    targets: drafts.map((d) => ({
-      id: d.id,
-      platform: d.platform,
-      language: d.language,
-      label: d.content.hook || d.content.title || d.text.slice(0, 60),
-    })),
-    selected: ids,
-    messages: [],
-  })
+export function getPostChat(): State {
+  return state
 }
 
-export function toggleChatTarget(id: number) {
-  const selected = state.selected.includes(id) ? state.selected.filter((x) => x !== id) : [...state.selected, id]
-  emit({ selected })
+/** Called by the generation results: a new batch goes on top and its first post is selected. */
+export function setChatDrafts(drafts: Draft[]) {
+  const ids = drafts.map((d) => d.id)
+  const same = ids.length === state.batch.length && ids.every((id, i) => id === state.batch[i])
+  if (same) return
+  emit({ batch: ids, selectedId: ids[0] ?? state.selectedId, pending: null })
+}
+
+export function selectChatDraft(id: number) {
+  emit({ selectedId: id, pending: state.pending?.draftId === id ? state.pending : null })
+}
+
+export function setChatPending(pending: ChatPending | null) {
+  emit({ pending })
+}
+
+export function setChatBusy(busy: boolean) {
+  emit({ busy })
 }
 
 export function addChatMessage(message: ChatMessage) {
   emit({ messages: [...state.messages, message].slice(-30) })
+}
+
+/** Short title used in the dropdown: hook, title or the first characters of the text. */
+export function draftTitle(draft: Pick<Draft, 'content' | 'text'>, max = 60): string {
+  const raw = (draft.content?.hook || draft.content?.title || draft.text || '').replace(/\s+/g, ' ').trim()
+  return raw.length > max ? `${raw.slice(0, max - 1)}…` : raw
+}
+
+/** Batch posts first (in their order), then the other recent drafts, without duplicates. */
+export function orderChatDrafts(batch: number[], recent: Draft[], batchDrafts: Draft[] = []): Draft[] {
+  const byId = new Map<number, Draft>()
+  for (const d of [...batchDrafts, ...recent]) if (!byId.has(d.id)) byId.set(d.id, d)
+  const first = batch.map((id) => byId.get(id)).filter((d): d is Draft => !!d)
+  const rest = recent.filter((d) => !batch.includes(d.id))
+  return [...first, ...rest]
+}
+
+/** The post the chat works on: the chosen one if still available, else the first. */
+export function effectiveChatDraft(options: Draft[], selectedId: number | null): Draft | null {
+  return options.find((d) => d.id === selectedId) ?? options[0] ?? null
 }

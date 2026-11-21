@@ -119,17 +119,21 @@
       "notes": "Indicaciones fijas"
     },
     "chat": {
-      "empty": "Genera un post: luego aquí podrás pedir correcciones («más largo», «termina con una pregunta»…) y el post se actualiza solo.",
-      "targets": "Posts que corregir",
+      "empty": "Aún no hay posts: genera uno y luego elígelo aquí para pedir correcciones.",
+      "targets": "Post que modificar",
       "placeholder": "Ej.: «Es demasiado corto, llévalo a unos 1000 caracteres», «más irónico», «añade una invitación a comentar»… (Intro para enviar, Mayús+Intro para nueva línea)",
       "label": "Corrección que pedir",
       "send": "Enviar",
       "working": "Corrigiendo el post…",
-      "hint": "Las correcciones valen solo para los posts seleccionados arriba. Las «Indicaciones fijas», en cambio, se añaden a cada nueva solicitud.",
+      "hint": "Enviar reescribe el post elegido en el menú: el texto anterior se sustituye por el corregido. Las «Indicaciones fijas» en cambio valen para cada nueva petición.",
       "handoff": "Con «Abrir en el chat» corrijo un post cada vez: pega el prompt en tu chat y luego pega aquí la respuesta.",
-      "done_one": "✓ Post actualizado. ¿Algo más?",
-      "done_other": "✓ {{count}} posts actualizados. ¿Algo más?"
-    }
+      "done": "✓ He reescrito «{{title}}». ¿Quieres cambiar algo más?",
+      "doneShort": "✓ Post reescrito. ¿Quieres cambiar algo más?"
+    },
+    "send": "Enviar",
+    "sent": "✓ Indicaciones guardadas y activas: las recibe cada petición a la IA.",
+    "applyNow": "Aplicarlas ya también a un post ya escrito",
+    "applyRequest": "Reescribe el post siguiendo estas indicaciones: {{notes}}"
   },
   "placeholder": {
     "title": "En construcción",

@@ -119,17 +119,21 @@
       "notes": "Indicazioni fisse"
     },
     "chat": {
-      "empty": "Genera un post: poi qui potrai chiedere le correzioni («più lungo», «aggiungi una domanda finale»…) e il post si aggiorna da solo.",
-      "targets": "Post da correggere",
+      "empty": "Non ci sono ancora post: generane uno e poi sceglilo qui per chiedere le correzioni.",
+      "targets": "Post da modificare",
       "placeholder": "Es.: «È troppo corto, portalo a circa 1000 caratteri», «più ironico», «aggiungi un invito a commentare»… (Invio per inviare, Maiusc+Invio per andare a capo)",
       "label": "Correzione da chiedere",
-      "send": "Invio",
+      "send": "Invia",
       "working": "Correggo il post…",
-      "hint": "Le correzioni valgono solo per i post selezionati qui sopra. Le «Indicazioni fisse» invece si aggiungono a ogni nuova richiesta.",
+      "hint": "Invia riscrive il post scelto nel menu: il testo vecchio viene sostituito da quello corretto. Le «Indicazioni fisse» invece valgono per ogni nuova richiesta.",
       "handoff": "Con «Apri nella chat» correggo un post alla volta: incolla il prompt nella tua chat e poi incolla qui la risposta.",
-      "done_one": "✓ Post aggiornato. Vuoi cambiare altro?",
-      "done_other": "✓ {{count}} post aggiornati. Vuoi cambiare altro?"
-    }
+      "done": "✓ Ho riscritto «{{title}}». Vuoi cambiare altro?",
+      "doneShort": "✓ Post riscritto. Vuoi cambiare altro?"
+    },
+    "send": "Invia",
+    "sent": "✓ Indicazioni salvate e attive: le riceve ogni richiesta all'AI.",
+    "applyNow": "Applica subito anche a un post già scritto",
+    "applyRequest": "Riscrivi il post seguendo queste indicazioni: {{notes}}"
   },
   "placeholder": {
     "title": "In costruzione",

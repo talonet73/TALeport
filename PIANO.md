@@ -301,3 +301,11 @@ Richiesta: nella chattina manca il tasto Invio; dopo che l'app ha scritto il pos
 - [x] Box fluttuante «Chat AI» con schede «Chat sul post» (`PostChat` con `postChatStore`: bersagli = bozze dell'ultima generazione, selezionabili; cronologia; tasto Invio e tasto Invio della tastiera; con «Apri nella chat» un post alla volta con incolla della risposta) e «Indicazioni fisse»
 - [x] Test: 2 backend (246); verificato dal vivo nel browser (post da 117 a 473 caratteri dopo la richiesta in chat)
 
+
+## Fase 17 — Chat: menu dei post e tasti Invia (1.6.1)
+Richiesta: la chat non faceva scrivere (dopo un riavvio non c'erano bersagli); menu a tendina con i titoli dei post per scegliere quale modificare; tasto «Invia» che sostituisce il post con la versione corretta; tasto «Invia» anche nelle Indicazioni fisse.
+
+- [x] `postChatStore`: un solo post scelto (`selectedId`), ordine = ultima generazione e poi bozze recenti (`useDrafts(30)`), stato «in attesa»/handoff condiviso
+- [x] `PostPicker` (piattaforma · lingua — titolo · data) in entrambe le schede; casella di testo sempre visibile; «Invia» riscrive il post scelto e la pagina scorre fino alla sua scheda (`id="draft-N"`, evidenziata 2 s)
+- [x] «Invia» nelle Indicazioni fisse: salva e attiva; opzione «Applica subito anche a un post già scritto» che lo riscrive seguendo le indicazioni
+- [x] Test: `postChatStore.test.ts` (3); verificato dal vivo dopo ricarica della pagina

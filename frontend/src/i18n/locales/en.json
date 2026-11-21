@@ -119,17 +119,21 @@
       "notes": "Standing notes"
     },
     "chat": {
-      "empty": "Generate a post: then you can ask for corrections here (\"longer\", \"end with a question\"…) and the post updates by itself.",
-      "targets": "Posts to correct",
+      "empty": "No posts yet: generate one, then pick it here to ask for changes.",
+      "targets": "Post to edit",
       "placeholder": "E.g.: \"It's too short, make it about 1000 characters\", \"more ironic\", \"add a call to comment\"… (Enter to send, Shift+Enter for a new line)",
       "label": "Correction to ask for",
       "send": "Send",
       "working": "Correcting the post…",
-      "hint": "Corrections apply only to the posts selected above. \"Standing notes\" instead are added to every new request.",
+      "hint": "Send rewrites the post chosen in the menu: the old text is replaced by the corrected one. \"Fixed instructions\" instead apply to every new request.",
       "handoff": "With \"Open in chat\" I correct one post at a time: paste the prompt into your chat, then paste its answer here.",
-      "done_one": "✓ Post updated. Anything else?",
-      "done_other": "✓ {{count}} posts updated. Anything else?"
-    }
+      "done": "✓ I rewrote \"{{title}}\". Anything else to change?",
+      "doneShort": "✓ Post rewritten. Anything else to change?"
+    },
+    "send": "Send",
+    "sent": "✓ Instructions saved and active: every AI request receives them.",
+    "applyNow": "Also apply them now to a post already written",
+    "applyRequest": "Rewrite the post following these instructions: {{notes}}"
   },
   "placeholder": {
     "title": "Under construction",

@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.6.1 — 2026-11-21
+
+Chat: scegli il post dal menu e premi Invia · Chat: pick the post from the menu and press Send
+
+**Italiano**
+
+- Corretto: dopo aver riaperto l'app la chat mostrava solo «Genera un post» e non faceva scrivere. Ora la casella di testo c'è sempre e funziona anche con le bozze già salvate.
+- Nuovo menu a tendina «Post da modificare» con i titoli dei post (prima quelli appena generati, poi i recenti, con data e ora). Scrivi la correzione e premi «Invia»: il post scelto viene riscritto al posto del vecchio e la pagina scorre fino a lui.
+- Anche «Indicazioni fisse» ha il tasto «Invia»: salva e attiva le indicazioni e, se vuoi, le applica subito a un post già scritto scelto dal menu.
+
+**English**
+
+- Fixed: after reopening the app the chat only showed "Generate a post" and did not let you type. The text box is now always there and also works with drafts already saved.
+- New "Post to edit" dropdown with the post titles (the ones just generated first, then the recent ones, with date and time). Write the correction and press "Send": the chosen post is rewritten in place of the old one and the page scrolls to it.
+- "Fixed instructions" also has a "Send" button: it saves and switches the instructions on and, if you want, applies them right away to a post already written, chosen from the menu.
+
 ## 1.6.0 — 2026-11-21
 
 Chat sul post e lunghezza in caratteri · Chat on the post and length in characters

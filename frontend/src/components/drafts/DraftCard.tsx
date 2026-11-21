@@ -45,7 +45,7 @@ export function DraftCard({ draft }: { draft: Draft }) {
     action.mutate({ path: `/drafts/${draft.id}${path}`, method, body }, { onSuccess: () => after?.() })
 
   return (
-    <article className="rounded-card border border-line bg-surface p-5 shadow-card">
+    <article id={`draft-${draft.id}`} className="scroll-mt-24 rounded-card border border-line bg-surface p-5 shadow-card transition-shadow">
       <header className="mb-3 flex flex-wrap items-center gap-2">
         <span className="rounded-full bg-accent-gradient px-3 py-0.5 text-sm font-semibold text-on-accent">
           {t(`platforms.${draft.platform}`)}
